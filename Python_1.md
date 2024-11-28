@@ -54,5 +54,55 @@ print("Bratislava") # aj tento prikaz
 print("Bratislava","Trnava","Kosice", sep="*")
 ```
 
+- Python if...else
+https://www.w3schools.com/python/python_conditions.asp
 
+```python
+# Napíšte program, ktorý pomocou príkazu input prečíta meno študenta
+# a jeho vek.
+# Potom to vypíše pomocou príkazu print a tiež vypíše informáciu jeho veku
+# o rok a aj o 10 rokov. 
+#Po spustení programu môžete dostať takýto výpis:
+
+## zadaj meno: Ema
+## zadaj vek: 17
+
+## Ema má 17 rokov
+## Ema bude mať o rok 18
+## Ema bude mať o 10 rokov 27
+
+meno= input("Zadaj meno studenta: ")
+vek= int(input("Zadaj vek sudenta: "))
+if meno != None:
+    print(meno, " ma ", vek," rokov")
+    print(meno, " bude mat o rok ", vek+1," rokov")
+    print(meno, " bude mat o 10 rokov ", vek+10," rokov")
+```
+
+
+```python
+a=int(input("Vloz 1. cislo: "))
+b=int(input("Vloz 2. cislo> " ))
+
+if a > b:
+    print("cislo",a,"je vacsie ako ",b )
+elif b>a:
+    print("cislo",a,"je mensie ako ",b )
+else:
+    print("cislo ",a,"je rovne ",b )
+```
+
+- for cyklus
+```python
+# vypis vedla seba n- krat lubovolny tetazec oddeleny memdzerou
+retazec=input("Zadaj opakujuci sa retazec: ")
+pocet=int(input("Zadaj pocet: "))
+'''
+if retazec != None:
+    print(pocet * retazec)
+'''
+for i in range(pocet):
+    print(retazec, end=" ")
+print("\nKonec programu")
+```
   
