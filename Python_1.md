@@ -23,3 +23,33 @@ https://codewith.mu/
 
 - blaho python
 https://python.input.sk/
+
+
+- operatory:
+  https://www.w3schools.com/python/python_operators.asp
+
+- datove typy:
+  https://www.w3schools.com/python/python_datatypes.asp
+
+- boolean typ
+  https://www.w3schools.com/python/python_booleans.asp
+  https://www.w3schools.com/python/python_numbers.asp
+
+- niektore vstavane funkcie
+https://www.w3schools.com/python/python_ref_functions.asp
+
+- pretypovanie: int(), float(), str()
+https://www.w3schools.com/python/python_casting.asp
+
+- klucove slova:
+https://www.w3schools.com/python/python_ref_keywords.asp
+
+'''python
+# tento prikaz retazec na obrazovku
+a = 4
+print("IT learning", a, end="@")
+print()
+print("Bratislava") # aj tento prikaz
+print("Bratislava","Trnava","Kosice", sep="*")
+'''
+  
