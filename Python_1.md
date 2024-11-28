@@ -10,11 +10,15 @@ Python Docs:
 ![image](https://github.com/user-attachments/assets/a1f82eb8-1e5d-40ea-8b03-cc169b487c51)
 
 
-studium: Try it Yourself - vies si vyskusat nejake veci
-## https://www.w3schools.com/python/default.asp
+- studium: Try it Yourself - vies si vyskusat nejake veci
+https://www.w3schools.com/python/default.asp
 
-# softver na organizaciu kodu 
-Visual Studiou Code
-PyCharm
+- softver na organizaciu kodu 
+  -  Visual Studiou Code
+  -  PyCharm
 
+- mu editor: pre zaciatocnikov vhodny
+https://codewith.mu/
 
+- blaho python
+https://python.input.sk/
