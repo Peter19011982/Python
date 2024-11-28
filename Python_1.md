@@ -44,6 +44,7 @@ https://www.w3schools.com/python/python_casting.asp
 - klucove slova:
 https://www.w3schools.com/python/python_ref_keywords.asp
 
+
 '''java
 # tento prikaz retazec na obrazovku
 a = 4
