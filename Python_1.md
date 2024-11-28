@@ -45,7 +45,7 @@ https://www.w3schools.com/python/python_casting.asp
 https://www.w3schools.com/python/python_ref_keywords.asp
 
 
-```java
+```python
 # tento prikaz retazec na obrazovku
 a = 4
 print("IT learning", a, end="@")
@@ -53,4 +53,6 @@ print()
 print("Bratislava") # aj tento prikaz
 print("Bratislava","Trnava","Kosice", sep="*")
 ```
+
+
   
