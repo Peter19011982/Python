@@ -211,3 +211,16 @@ for m in range(b):
         print("*", end=" ")
     print()
 ```
+
+```python
+# trojuholnik rovnoramenny pravouhly
+a= int(input("Zadaj dlzku strany trojuholnika: ") )
+print()
+print()
+for i in range(a+1):
+    print(i * "* ")
+
+print()
+for i in range(a,0,-1):
+    print(i * "* ")
+```
