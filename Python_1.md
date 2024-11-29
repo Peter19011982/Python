@@ -125,3 +125,89 @@ for i in range(pocet):
         print(i, retazec)
 print("\nKonec programu")
 ```
+
+- importovanie kniznic
+import ramdom
+import time
+- alias
+import time as t
+
+potom volanie funkcie sleep napr.:
+t.sleep(2)
+
+
+```python
+# vypis vedla seba n- krat lubovolny tetazec oddeleny memdzerou
+import random
+import time as t
+retazec=input("Zadaj opakujuci sa retazec: ")
+'''
+pocet=int(input("Zadaj pocet: "))
+
+if retazec != None:
+    print(pocet * retazec)
+'''
+pocet = random.randint(5,20)
+print("Pocet je: ", pocet)
+# ak ma range 1 parameter ide od 0 do n-1
+# ak ma range 2 parametre ide od a do n-1  range(a,n)
+# ak ma range 3 parametre ide od a do n-1, v kroku b range(a,n,b)
+
+for i in range(pocet):
+    if i< pocet-1:
+        print(i, retazec, end=" ")
+        t.sleep(2)
+    else:
+        print(i, retazec)
+print("\nKonec programu")
+```
+
+
+https://www.w3schools.com/python/python_while_loops.asp
+
+![image](https://github.com/user-attachments/assets/a1fa4d8b-1a9e-43b2-acad-e469a9bc7867)
+
+
+- stvorec + obdlznik
+```python
+'''
+
+napíšte program, ktory vytvori stvorec so zadanym poctom hviezdiciek
+Môžete dostať takýto výstup:
+zadaj a: 5
+*****
+*****
+*****
+*****
+*****
+
+'''
+#stvorec1
+a = int(input("Zadaj dlzku strany stvorca: "))
+print()
+for i in range(a):
+    print(a * "* ")
+
+print()
+#stvorec 2:
+for m in range(a):
+    for n in range(a):
+        print("*", end=" ")
+    print()
+
+# obdlznik
+a= int(input("Zadaj dlzku strany obdlznika: ") )
+b= int(input("Zadaj sirku strany obdlznika: "))
+
+#obdlznik1
+print()
+for i in range(b):
+    print(a * "* ")
+
+#obdlznik2
+print()
+for m in range(b):
+    for n in range(a):
+        print("*", end=" ")
+    print()
+```
