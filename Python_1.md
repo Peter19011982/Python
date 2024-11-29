@@ -276,3 +276,33 @@ for item in pokusy:
     else:
         print(item, " nie je parne")
 ```
+
+```python
+'''
+
+Napiste program, ktory ponukne pouzivatelovi 10-krat zadat cislo
+a po kazdom zadani mu "vylosuje" cislo v rozsahu 1-6.
+Spocitajte spravne aj nespravne pokusy.
+
+'''
+import random
+#prazdny zoznam
+#pokusy = list()
+
+
+n=0
+t=0
+cislo=0
+cislop=0
+for i in range(10):
+    cislo = int(input("Zadaj cilo od 1 po 6: "))
+    cislop = random.randint(1,6)
+    if cislo==cislop:
+        print("Bomba! Tvoje cislo ", cislo, " je rovnake ako moje")
+        t+=1
+    else:
+        print("netrafil si!  Tvoje cislo ", cislo, " je ine ako moje", cislop)
+        n+=1
+print("Trafil si to" , t, " krat")
+print("NEtrafil si to" , n, " krat")
+```
