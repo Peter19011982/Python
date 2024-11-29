@@ -105,4 +105,23 @@ for i in range(pocet):
     print(retazec, end=" ")
 print("\nKonec programu")
 ```
-  
+
+```python
+# vypis vedla seba n- krat lubovolny tetazec oddeleny memdzerou
+retazec=input("Zadaj opakujuci sa retazec: ")
+pocet=int(input("Zadaj pocet: "))
+'''
+if retazec != None:
+    print(pocet * retazec)
+'''
+# ak ma range 1 parameter ide od 0 do n-1
+# ak ma range 2 parametre ide od a do n-1  range(a,n)
+# ak ma range 3 parametre ide od a do n-1, v kroku b range(a,n,b)
+
+for i in range(pocet):
+    if i< pocet-1:
+        print(i, retazec, end=" ")
+    else:
+        print(i, retazec)
+print("\nKonec programu")
+```
