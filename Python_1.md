@@ -224,3 +224,55 @@ print()
 for i in range(a,0,-1):
     print(i * "* ")
 ```
+
+- Vynimky
+  https://www.w3schools.com/python/python_try_except.asp
+
+- list - editovatelne
+https://www.w3schools.com/python/python_lists.asp
+```python
+thislist = ["apple", "banana", "cherry"]
+print(thislist)
+```
+
+- tuple - needitovatelne
+https://www.w3schools.com/python/python_tuples.asp
+
+- built-in funkcie list
+https://www.w3schools.com/python/python_ref_list.asp 
+![image](https://github.com/user-attachments/assets/7a01d7bb-9bb5-4571-87b9-814ca2fcc4d9)
+
+
+```python
+thistuple = ("apple", "banana", "cherry")
+print(thistuple)
+```
+
+- funkcie:
+https://www.w3schools.com/python/python_functions.asp
+
+```python
+# hadzeme kockou 20 krat
+# zapiseme do zoznamu a vypiseme ho
+# zistit kolkokrat pdla 6
+
+import random
+#prazdny zoznam
+#pokusy = list()
+pokusy = []
+for i in range(20):
+    pokusy.append(random.randint(1,6))
+print(pokusy)
+print("cislo 6 padlo: ", str(pokusy.count(6))," krat")
+
+# parne neparne cisla hodene kockou
+def parne(cislo):
+    if cislo%2==0: return True
+    else: return False
+
+for item in pokusy:
+    if parne(item):
+        print(item, " je parne")
+    else:
+        print(item, " nie je parne")
+```
