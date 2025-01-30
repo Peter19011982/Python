@@ -1,7 +1,4 @@
-# Python
-
-## Pole int-tov - ulohy
-
+```python
 # 3916 prezencne
 
 # print message John Doe is a gardener and live in 
@@ -65,3 +62,4 @@ with open(file_name, 'r') as f:
         ascii_chars += len(word)
 
     print(ascii_chars)
+```
