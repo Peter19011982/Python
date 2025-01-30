@@ -393,16 +393,15 @@ print(sys.path)
 ```
 
 
-Python dir function
-The built-in dir function gives a sorted list of strings containing the names defined by a module.
 
-#!/usr/bin/python
 
-# dirfun.py
 
-"""
-This is dirfun module
-"""
+
+
+-- This is dirfun module
+-- Python dir function
+-- The built-in dir function gives a sorted list of strings containing the names defined by a module.
+
 ```python
 import math, sys
 
@@ -416,4 +415,120 @@ def show_names():
       print(i)
 
 print(dir())
+```
+
+-- ImportError
+
+```python
+try:
+    # Non-existent module
+    import numpy12
+except ImportError:
+    print('Module not found')
+```
+
+
+--import modulu a odkaz na funckiu z ineho modulu
+
+```python
+import utils
+words= ['cat','blue','skies','dog']
+
+print(utils.filter_len_4(words))
+
+--main.py
+# import sys
+# # kde sa prehladavaju moduly
+# print(sys.path)
+
+# import empty
+# import sys
+# import math
+
+# print(empty.__name__)
+# print(empty.__doc__)
+
+# print(math.ceil.__doc__)
+```
+
+--utils.py
+
+```python
+def filter_len_4(words):
+    return list(filter(lambda word: len(word) == 4, words))
+```
+
+
+![image](https://github.com/user-attachments/assets/7bcd057f-fad1-4b7f-b831-7cd5a6cee286)
+
+
+
+--DATABAZA  SQL
+https://github.com/janbodnar/Python-Skolenie/tree/master/stdlib
+
+https://github.com/janbodnar/Python-Skolenie/blob/master/stdlib/smtplib/README.md
+
+novy modul nainstalovat: sqlite viewer  - len na zobrazenie
+ak chcem aj zapis, tak stiahnem a nainstalujem
+https://sqlitebrowser.org/dl/
+
+```python
+import sqlite3
+import sys
+
+con = sqlite3.connect('test.db')
+
+with con:
+    
+    cur = con.cursor()    
+    cur.execute('SELECT SQLITE_VERSION()')
+    
+    version = cur.fetchone()
+    
+    print("SQLite version: {}".format(version[0]))
+```
+
+--vytvorenie tabulky a naplnenie
+
+```python
+import sqlite3
+
+con = sqlite3.connect('test.db')
+
+with con:
+    
+    cur = con.cursor()  
+    #cur.execute("DROP TABLE IF EXISTS cities")  
+    cur.execute("CREATE TABLE cities(id INTEGER PRIMARY KEY, name TEXT, population INT)")
+    cur.execute("INSERT INTO cities(name, population) VALUES('Bratislava', 432000)")
+    cur.execute("INSERT INTO cities(name, population) VALUES('Budapest', 1759000)")
+    cur.execute("INSERT INTO cities(name, population) VALUES('Prague', 1280000)")
+    cur.execute("INSERT INTO cities(name, population) VALUES('Warsaw', 1748000)")
+    cur.execute("INSERT INTO cities(name, population) VALUES('Los Angeles', 3971000)")
+    cur.execute("INSERT INTO cities(name, population) VALUES('New York', 8550000)")
+    cur.execute("INSERT INTO cities(name, population) VALUES('Edinburgh', 464000)")
+    cur.execute("INSERT INTO cities(name, population) VALUES('Suzhou', 4327066)")
+    cur.execute("INSERT INTO cities(name, population) VALUES('Zhengzhou', 4122087)")
+    cur.execute("INSERT INTO cities(name, population) VALUES('Berlin', 3671000)")
+```
+
+
+```python
+import sqlite3
+import sys
+
+con = sqlite3.connect('test.db')
+
+with con:
+    
+    cur = con.cursor()    
+    cur.execute('SELECT SQLITE_VERSION()')
+    cur.execute('SELECT * from cities')
+    
+    version = cur.fetchone()
+    rows = cur.fetchall()
+    
+    print("SQLite version: {}".format(version[0]))
+    for row in rows:
+        print(row)
 ```
