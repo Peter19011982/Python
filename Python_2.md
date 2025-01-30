@@ -334,6 +334,8 @@ with open(file_name, 'r') as f:
 
 ```
 
+--Filtering users in file
+
 ```python
 Filtering users in file
 file_name = 'users.csv'
@@ -357,4 +359,61 @@ with open(file_name, 'r') as f:
     print(filtered)
 
     print(users_w == filtered)
+```
+
+-- https://github.com/janbodnar/Python-Skolenie/blob/master/modules.md
+-- modul je .py subor
+- moduly do vacsich celkov packages
+- empty.py moze byt nejaky dokumentacny modul a v main.py ho mozes importovat a potom otvorit ctrl+klik a pristupit k empty.py 
+
+
+![image](https://github.com/user-attachments/assets/2bbb9d22-b034-4613-baf8-3bde28bc2b70)
+
+![image](https://github.com/user-attachments/assets/9526a884-5e77-4052-b392-bb308ada27c5)
+
+--dokumentacne retazce
+
+```python
+import empty
+import sys
+import math
+
+print(empty.__name__)
+print(empty.__doc__)
+
+print(math.ceil.__doc__)
+```
+
+-- kde python prehladava moduly
+
+```
+import sys
+# kde sa prehladavaju moduly
+print(sys.path)
+```
+
+
+Python dir function
+The built-in dir function gives a sorted list of strings containing the names defined by a module.
+
+#!/usr/bin/python
+
+# dirfun.py
+
+"""
+This is dirfun module
+"""
+```python
+import math, sys
+
+version = 1.0
+
+names = ["Paul", "Frank", "Jessica", "Thomas", "Katherine"]
+
+def show_names():
+
+   for i in names:
+      print(i)
+
+print(dir())
 ```
