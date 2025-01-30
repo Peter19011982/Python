@@ -63,3 +63,32 @@ with open(file_name, 'r') as f:
 
     print(ascii_chars)
 ```
+
+https://github.com/janbodnar/Python-Skolenie/blob/master/terms.md
+
+https://github.com/janbodnar/Python-Skolenie/blob/master/functions.md
+
+```python
+#!/usr/bin/python
+
+def fn():
+    return [1, 2, 3, 4, 5, 6]
+
+a, b, c, d, e, f = fn()
+print(a, b, c, d, e, f)
+
+a, *mid, b = fn()
+print(a, mid, b)
+
+a, b, c, _, _, _ = fn()
+print(a, b, c)
+
+a, b, *_ = fn()
+print(a, b)
+
+a, b, c, *d = fn()
+print(a, b, c, d)
+
+*a, b, c, d = fn()
+print(a, b, c, d)
+```
