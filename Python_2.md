@@ -207,3 +207,40 @@ print(words_w_c)
 words_w_c=list(filter(lambda w: w[0]  in ('w' ,'c'), words ))
 print(words_w_c)
 ```
+
+-- pouzitie map
+
+```python
+def twice(x):
+    return x*2
+
+vals = [1,11,2,3,3]
+
+vals2 = list(map(twice,vals))
+print(vals)
+print(vals2)
+
+vals3 = list(map(lambda e: e*2,vals))
+print(vals3)
+```
+
+
+```python
+data = '1,2,3,4,5,6,7,8,9,10'
+fields = data.split(',')
+#pretypovat
+map(int, fields)
+my_sum= sum(map(int, fields))
+print(my_sum)
+```
+
+
+```python
+file_name = 'words.txt'
+with open(file_name, 'r') as f:
+    data = f.readlines()
+    print(data)
+# (map(str.rstrip, data)  odstrani zo zonamu znak dalsi riadok
+    words = list(map(str.rstrip, data))
+    print(words)
+```
