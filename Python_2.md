@@ -245,4 +245,116 @@ with open(file_name, 'r') as f:
     print(words)
 ```
 
+-- funkcia faker   (pip install faker) - vie vytvarat testovacie data
 
+```python
+import faker 
+faker = faker.Faker()
+
+first_name = faker.first_name()
+last_name = faker.last_name()
+
+print(first_name,last_name)
+```
+
+
+
+---automaticky vygenerovany zoznam
+
+
+
+
+```python
+from dataclasses import dataclass
+import requests
+
+@dataclass(frozen=True)
+class User:
+    id: int
+    first_name: str
+    last_name: str
+    occupation: str
+
+url = 'https://webcode.me/users.csv'
+
+resp = requests.get(url)
+content = resp.content.decode('utf8')
+
+lines = content.splitlines()
+
+users = []
+
+for line in lines[1:-1]:
+    fields = line.split(',', 3)
+    fields_cleaned = fields[0], fields[1], fields[2], fields[3].replace('"', '')
+
+    u = User(*fields_cleaned)
+    users.append(u)
+
+
+for user in users:
+    print(user)
+```
+
+```python
+import faker
+
+faker = faker.Faker()
+
+first_name = faker.first_name()
+last_name = faker.last_name()
+city = faker.city()
+state = faker.state()
+email = faker.email()
+
+print(first_name, last_name, city, state, email)
+
+file_name = 'users.csv'
+
+with open(file_name, 'w') as f:
+    f.write('first_name,last_name,city,state,email\n')
+    for _ in range(1000):
+        first_name = faker.first_name()
+        last_name = faker.last_name()
+        city = faker.city()
+        state = faker.state()
+        email = faker.email()
+
+        f.write(f'{first_name},{last_name},{city},{state},{email}\n')
+```
+
+-- citanie testovacich dat upravene
+```python
+file_name = 'users.csv'
+with open(file_name, 'r') as f:
+    for line in f:
+        
+        fields = line.rstrip().split(',')
+        print(fields)
+
+```
+
+```python
+Filtering users in file
+file_name = 'users.csv'
+
+all = []
+users_w = []
+
+with open(file_name, 'r') as f:
+
+    for line in f:
+        fields = line.rstrip().split(',')
+        all.append(fields)
+        if fields[1].startswith('W'):
+            users_w.append(fields)
+
+
+    print(users_w)
+
+    filtered = list(filter(lambda x: x[1].startswith('W'), all))
+    # filtered = list(filter(lambda x: x[1][0] == 'W', all))
+    print(filtered)
+
+    print(users_w == filtered)
+```
