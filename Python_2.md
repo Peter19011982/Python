@@ -92,3 +92,118 @@ print(a, b, c, d)
 *a, b, c, d = fn()
 print(a, b, c, d)
 ```
+
+--Function redefinition
+
+```python
+#!/usr/bin/python
+
+# redefinition.py
+
+from time import gmtime, strftime
+
+
+def showMessage(msg):
+
+    print(msg)
+
+
+showMessage('Ready.')
+
+
+def showMessage(msg):
+
+    print(strftime('%H:%M:%S', gmtime()))
+    print(msg)
+
+
+showMessage('Processing.')
+
+```
+
+-- funkciu musis najprv zadefinovat a az potom volat
+
+
+https://github.com/janbodnar/Python-Skolenie/blob/master/functions.md#collection-of-functions
+
+-- Funkcie map a filter
+- priamo implementovane build-in
+
+```python
+#map
+#filter
+negative_vals = []
+vals=[-3,4,0,2,-1,0,9,-9]
+
+# for val in vals:
+#     if val <0:
+#         negative_vals.append(val)
+
+def is_negative(e):
+    if e<0:
+        return True
+    
+negative_vals = list(filter(is_negative,vals))
+print(negative_vals)
+
+
+def is_positive(e):
+    if e>0:
+        return True
+
+positive_vals = list(filter(is_positive,vals))
+print(positive_vals)
+```
+
+-- LAMBDA funkcia da sa pouzit len raz, ak ju chcem viackrat pouzit vzdy ju musime znova zadefinovat ...negative_vals = list(filter(lambda e: e< 0,vals))
+```python
+#map
+#filter
+negative_vals = []
+positive_vals = []
+vals=[-3,4,0,2,-1,0,9,-9]
+
+# for val in vals:
+#     if val <0:
+#         negative_vals.append(val)
+
+# def is_negative(e):
+#     if e<0:
+#         return True
+    
+# negative_vals = list(filter(is_negative,vals))
+# print(negative_vals)
+
+#LAMBDA - anonymim vnorena funkcia
+negative_vals = list(filter(lambda e: e< 0,vals))
+print(negative_vals)
+
+def is_positive(e):
+    if e>0:
+        return True
+
+positive_vals = list(filter(is_positive,vals))
+print(positive_vals)
+```
+
+-- bezna def funkcia vs lambda 
+
+```python
+words = ['apple','word','wrap','peter', 'jozo', 'cela']
+
+
+def starts_with_w(word):
+    if word[0] == 'w':
+        return True
+
+words_w= list(filter(starts_with_w, words))
+print(words_w)
+words_w=list(filter(lambda w: w[0]=='w', words ))
+print(words_w)
+
+words_w_c=list(filter(lambda w: w[0]=='w' or w[0]=='c', words ))
+print(words_w_c)
+
+words_w_c=list(filter(lambda w: w[0]  in ('w' ,'c'), words ))
+print(words_w_c)
+```
