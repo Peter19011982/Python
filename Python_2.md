@@ -244,3 +244,5 @@ with open(file_name, 'r') as f:
     words = list(map(str.rstrip, data))
     print(words)
 ```
+
+
