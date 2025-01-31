@@ -702,7 +702,7 @@ print(c.getRadius())
 print(c.area())
 ```
 
-##Rectangle
+## Rectangle
 
 ```
 class Rectangle:
