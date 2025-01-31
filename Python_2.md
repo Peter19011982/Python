@@ -894,13 +894,113 @@ https://github.com/janbodnar/Python-Skolenie/blob/master/list_comprehensions.md
 ```python
 #!/usr/bin/python
 
-a = [1, 2, 3, 4, 5, 6]
+a = [1, 2, 3, 4, 5, 6, -5, -4, -6, "-4", "-7", "18"]
 
-#aj tranformujeme
-b = [e * 2 for e in a]
-print(b)
+# #aj tranformujeme
+# b = [e * 2 for e in a]
+# print(b)
 
-#tu len filtrujeme
-c = [e for e in a if e % 2 == 0]
-print(c)
+# #tu len filtrujeme
+# c = [e for e in a if e % 2 == 0]
+# print(c)
+
+# #parne zaporne 
+# d = [e for e in a if e % 2 == 0 and e < 0]
+# print(d)
+
+# ocistenie na int
+res = [int(val) for val in a]
+print(res)
 ```
+
+
+
+```python
+from dataclasses import dataclass
+import operator
+
+@dataclass(order=True)
+class User:
+    fname: str
+    lname: str
+    occupation: str
+    age: int
+
+users = [User('John', 'Doe', 'gardener', 24), 
+         User('Adam', 'Roe', 'student', 25),
+         User('Jane', 'Doe', 'teacher', 45), 
+         User('Roger', 'Roe', 'driver', 23),
+         User('Leo', 'Abramovic', 'singer', 33), 
+         User('Tomas', 'Wager', 'programmer', 58),
+         User('John', 'Adams', 'dentist', 58), 
+         User('Sam', 'Brown', 'actor', 99),
+         User('John', 'Smith', 'broker', 58), 
+         User('Rob', 'Roe', 'dancer', 55)]
+
+# filtered_list = list(filter(lambda user: user.lname.startswith('A'),users))
+# print(filtered_list)
+# filtered_list_nad40=list(filter(lambda user: user.age> 40,users))
+# print(filtered_list_nad40)
+
+users_w = [user for user in users if user.lname.startswith('W') ]
+
+users_older_40 = [user for user in users if user.age>40]
+print(users_w)
+print(users_older_40)
+```
+
+-- Predicates - mozem volat v List comprehensions aj funkciu  
+https://github.com/janbodnar/Python-Skolenie/blob/master/list_comprehensions.md#predicates
+
+```
+#!/usr/bin/python
+
+def is_vowel(c):
+
+    vowels = 'aeiou'
+
+    if c in vowels:
+        return True
+    else:
+        return False
+
+
+sentence = 'There are eagles in the sky.'
+
+vowels = [c for c in sentence if is_vowel(c)]
+print(vowels)
+```
+
+-- Multiple if conditions
+https://github.com/janbodnar/Python-Skolenie/blob/master/list_comprehensions.md#multiple-if-conditions
+
+--Multiple for loops
+https://github.com/janbodnar/Python-Skolenie/blob/master/list_comprehensions.md#multiple-for-loops
+
+-- The if condition in front
+https://github.com/janbodnar/Python-Skolenie/blob/master/list_comprehensions.md#the-if-condition-in-front
+
+
+## Copy by value vs by reference
+-- https://github.com/janbodnar/Python-Skolenie/blob/master/copy_val_ref.md
+
+
+## Passing arguments to functions
+-- https://github.com/janbodnar/Python-Skolenie/blob/master/copy_val_ref.md#passing-arguments-to-functions
+
+
+## Table
+Type	Example	Copied By
+Integer	42	Value
+Float	3.14	Value
+String	"hello"	Value
+Tuple	(1, 2, 3)	Value
+List	[1, 2, 3]	Reference
+Dictionary	{"key": "value"}	Reference
+Set	{1, 2, 3}	Reference
+Custom Object	MyClass()	Reference
+In this table:
+
+Copied By Value means that when you assign the value to another variable, a new copy of the value is created.
+Copied By Reference means that when you assign the value to another variable, both variables refer to
+the same object in memory.
