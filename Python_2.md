@@ -735,3 +735,48 @@ r1.set_height(40)
 
 print(r1.area())
 ```
+
+## Object quality
+
+```
+class User:
+    def __init__(self, name, age):
+        self.name = name
+        self.age = age
+
+    # def __eq__(self, other):
+    #     if isinstance(other, User):
+    #         return self.name == other.name and self.age == other.age
+    #     return False
+
+u1 = User("John Doe", 35)
+u2 = User("John Doe", 35)
+
+u3 = u1
+
+print(u1 == u2)  #false - ak eq nieje definovane
+print(u1 == u3)  #True - ak eq nieje definovane
+```
+
+## Equals metoda ak chcem porovnat HODNOTY
+
+```python
+class User:
+    def __init__(self, name, age):
+        self.name = name
+        self.age = age
+
+    def __eq__(self, other):
+        if isinstance(other, User):
+            return self.name == other.name and self.age == other.age
+        return False
+
+u1 = User("John Doe", 35)
+u2 = User("John Doe", 35)
+
+u3 = u1
+
+print(u1 == u2)  # True - ak je eq metada definovana - zistuje ci maju rovanke hodnoty
+print(u1 == u3)  # True - ak je eq metada definovana
+```
+
