@@ -816,3 +816,91 @@ print(book)
 print(len(book))
 del book
 ```
+
+## The dataclass
+https://github.com/janbodnar/Python-Skolenie/blob/master/dataclass.md
+
+```python
+#!/usr/bin/python
+
+# simple_dataclass.py
+
+from dataclasses import dataclass
+
+@dataclass
+class Person:
+    name: str
+    age: int
+
+p = Person('John Doe', 34)
+print(p)
+```
+
+## The frozen parameter
+-- nemozem menit parameter, ked je frozen=true plati pre triedu pod: @dataclass(frozen=True) 
+```python
+#!/usr/bin/python
+
+# frozen.py
+
+from dataclasses import dataclass
+
+@dataclass(frozen=True)
+class Person:
+    name: str
+    age: int
+
+p = Person('John Doe', 34)
+p.occupation = 'gardener'
+
+print(p)
+print(p.occupation)
+```
+
+## Sorting
+
+```python
+from dataclasses import dataclass
+import operator
+
+@dataclass(order=True)
+class User:
+    fname: str
+    lname: str
+    occupation: str
+    age: int
+
+users = [User('John', 'Doe', 'gardener', 24), 
+         User('Adam', 'Roe', 'student', 25),
+         User('Jane', 'Doe', 'teacher', 45), 
+         User('Roger', 'Roe', 'driver', 23),
+         User('Leo', 'Abramovic', 'singer', 33), 
+         User('Tomas', 'Wager', 'programmer', 58),
+         User('John', 'Adams', 'dentist', 58), 
+         User('Sam', 'Brown', 'actor', 99),
+         User('John', 'Smith', 'broker', 58), 
+         User('Rob', 'Roe', 'dancer', 55)]
+
+filtered_list = list(filter(lambda user: user.lname.startswith('A'),users))
+print(filtered_list)
+filtered_list_nad40=list(filter(lambda user: user.age> 40,users))
+print(filtered_list_nad40)
+```
+
+## List comprehensions 
+
+https://github.com/janbodnar/Python-Skolenie/blob/master/list_comprehensions.md
+
+```python
+#!/usr/bin/python
+
+a = [1, 2, 3, 4, 5, 6]
+
+#aj tranformujeme
+b = [e * 2 for e in a]
+print(b)
+
+#tu len filtrujeme
+c = [e for e in a if e % 2 == 0]
+print(c)
+```
