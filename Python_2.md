@@ -990,3 +990,86 @@ https://github.com/janbodnar/Python-Skolenie/blob/master/list_comprehensions.md#
 
 
 ![image](https://github.com/user-attachments/assets/ce2898ee-1f1f-4c2b-8a6b-d0a1507ddebc)
+
+## Python assert keyword
+
+-- https://github.com/janbodnar/Python-Skolenie/blob/master/assert.md
+```python
+def my_function(a, b):
+    assert isinstance(a, int), "Parameter 'a' must be an integer"
+    assert isinstance(b, str), "Parameter 'b' must be a string"
+    # Function logic here
+    print(f"a: {a}, b: {b}")
+
+# Example usage
+my_function(5, "hello")  # This works
+my_function(5, 10)  # This raises AssertionError: Parameter 'b' must be a string
+```
+--nejake tasky 
+https://github.com/janbodnar/Python-Skolenie/blob/master/solve/tasks_simple.md
+
+
+## Exceptions
+-- https://github.com/janbodnar/Python-Skolenie/blob/master/exceptions.md
+
+
+## Opakovanie
+
+-- Generate fake user data
+
+```python
+file_name = 'users.csv'
+
+faker = faker.Faker()
+
+
+with open(file_name, 'w') as f:
+
+    headers = 'first_name,last_name,job,city,salary\n'
+    f.write(headers)
+
+    for _ in range(10_000):
+
+        fname = faker.first_name()
+        lname = faker.last_name()
+        job = faker.job()
+        city = faker.city()
+        salary = faker.random_int(850, 5500, 50)
+        
+        row = f'{fname};{lname};{job};{city};{salary}\n'
+
+        f.write(row)
+```
+
+-- Read CSV data into list of user objects.
+
+```python 
+from dataclasses import dataclass
+
+@dataclass
+class User:
+    first_name: str
+    last_name: str
+    job: str
+    city: str
+    salary: int
+
+
+file_name = 'users.csv'
+all_users = []
+
+
+with open(file_name, 'r') as f:
+
+    next(f)
+
+    for line in f:
+        # print(repr(line))
+        row = line.rstrip()
+        fields = row.split(';')
+    
+        user = User(fields[0], fields[1], fields[2], fields[3], int(fields[4]))
+        all_users.append(user)
+
+    print(all_users[:11])
+```
