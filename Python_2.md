@@ -577,3 +577,127 @@ users = [
 users_only_40 = list(filter(lambda user: user["age"] > 40, users))
 print(users_only_40)
 ```
+
+-- OBJEKTY
+https://github.com/janbodnar/Python-Skolenie/blob/master/oop.md
+
+
+--trieda class
+```python
+#!/usr/bin/python
+
+# first_object.py
+#toto je nedokoncena trieda - prazdna
+class First:
+    pass
+
+#vytvorenie objektu z triedy
+fr = First()
+
+print(type(fr))
+print(type(First))
+```
+
+-- Object initialization
+-- ak je funkcia zadefinoavna v triede, vzy musi mat prve: def __init__(self):
+
+```python
+#!/usr/bin/python
+
+# object_initialization.py
+
+class Being:
+
+    def __init__(self):
+        print("Being is initialized")
+
+Being()
+```
+
+--KONSTRUKTOR sa vola vtedy, ked chceme inicializovat hodnotu
+
+```python
+#!/usr/bin/python
+
+# object_initialization.py
+
+class Being:
+
+    def __init__(self):
+        print("Being is initialized")
+
+b1 = Being()
+b2 = Being()
+b3 = Being()
+b4 = Being()
+```
+-- PREFEROVANY sposob cez konstruktor definicie premennej
+```python
+#!/usr/bin/python
+
+# attributes.py
+
+class Cat:
+
+    def __init__(self, name):
+
+        self.name = name
+
+missy = Cat('Missy')
+lucky = Cat('Lucky')
+
+print(missy.name)
+print(lucky.name)
+```
+--nepreferovany sposom definicie premennej
+
+```python
+class Person:
+    pass
+
+p = Person()
+p.age = 24
+p.name = "Peter"
+p.occupation = "teacher"
+
+print("{0} is {1} years old an is a {2}".format(p.name, p.age, p.occupation))
+
+p2 = Person()
+p2.age = 44
+p2.name = "Jozef"
+p2.occupation = "programmer"
+
+print("{0} is {1} years old an is a {2}".format(p2.name, p2.age, p2.occupation))
+```
+
+
+
+--GETre a SETre
+```python
+#!/usr/bin/python
+
+# methods.py
+
+class Circle:
+
+    pi = 3.141592
+
+    def __init__(self, radius=1):
+        self.radius = radius
+
+    def area(self):
+        return self.radius * self.radius * Circle.pi
+
+    def setRadius(self, radius):
+        self.radius = radius
+
+    def getRadius(self):
+        return self.radius
+
+
+c = Circle()
+
+c.setRadius(5)
+print(c.getRadius())
+print(c.area())
+```
