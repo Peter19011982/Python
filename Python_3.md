@@ -567,3 +567,24 @@ def read_users():
 # dowload_data()
 read_users()
 ```
+
+
+## Pythov virtual env
+
+https://github.com/janbodnar/Python-Skolenie/blob/master/venv.md
+
+- virtualne prostredie
+  - vytvorit adresar a otvorit ho vo vs code
+  - vytvorenie virt. prostredia    py -m venv myenv
+  - akivacia                   myenv\Scripts\activate
+  - deaktivacia
+  - requirements.tx           pip install -r requirements.txt
+ 
+## POSTGRES
+
+https://www.enterprisedb.com/downloads/postgres-postgresql-downloads
+
+![image](https://github.com/user-attachments/assets/eff5c7d2-049f-458a-88f0-0ef3debbeda3)
+
+-- https://github.com/janbodnar/Python-Skolenie/blob/master/data/countries_postgre.sql
+-- https://github.com/janbodnar/Python-Skolenie/blob/master/libs/psycopg.md
