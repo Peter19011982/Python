@@ -185,3 +185,91 @@ print(sys.version_info)
 print(sys.implementation)
 print(sys.path)
 ```
+
+## JSON
+https://github.com/janbodnar/Python-Skolenie/blob/master/basic_std_modules.md#json
+
+--vytvorenie json
+```python
+#!/usr/bin/python
+
+import json
+
+data = {"name": "Jane", "age": 17}
+
+fname = 'friends.json'
+with open(fname, 'w') as f:
+    json.dump(data, f)
+```
+
+
+
+
+
+--nacitanie do slovnika
+ 
+```python
+#!/usr/bin/python
+
+import json
+
+fname = 'products.json'
+with open(fname) as f:
+
+    data = json.load(f)
+    print(data)
+    # for e in data['products']:
+    #     print(e)
+```
+
+
+-- loads zo stringu
+```python
+#!/usr/bin/python
+
+import json
+
+json_data = '{"name": "Jane", "age": 17}'
+
+data = json.loads(json_data)
+
+print(type(json_data))
+print(type(data))
+
+print(data)
+```
+
+--pozor funkcia text
+
+```python
+import requests
+import json
+
+url = 'https://webcode.me/users.json'
+
+resp = requests.get(url)
+print(resp.status_code)
+
+data = resp.text
+print(type(data))
+
+with open('users.json', 'w') as f:
+
+    f.write(data)
+```
+
+-- funkcia json()
+
+```python
+import requests, json
+url = 'https://webcode.me/users.json'
+
+resp = requests.get(url)
+print(resp.status_code)
+
+data = resp.json()
+
+with open('users2.json', 'w') as f:
+
+    json.dump(data, f, sort_keys=True, indent=4 * ' ')
+```
