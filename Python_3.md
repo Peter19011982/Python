@@ -273,3 +273,20 @@ with open('users2.json', 'w') as f:
 
     json.dump(data, f, sort_keys=True, indent=4 * ' ')
 ```
+
+## Secrets
+https://github.com/janbodnar/Python-Skolenie/blob/master/basic_std_modules.md#secrets
+-- generovanie hesiel
+
+```python
+#!/usr/bin/python
+
+
+import string
+import secrets
+
+chars = string.ascii_letters + string.digits + string.punctuation
+passwd = "".join(secrets.choice(chars) for i in range(8))
+
+print(passwd)
+```
