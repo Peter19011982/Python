@@ -171,3 +171,17 @@ import math, os, random
 for m in sys.modules:
     print(m)
 ```
+
+-- systemove informacie:
+
+```python
+import sys
+
+print(sys.argv)
+print(sys.byteorder)
+print(sys.platform)
+print(sys.version)
+print(sys.version_info)
+print(sys.implementation)
+print(sys.path)
+```
