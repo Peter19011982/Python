@@ -435,3 +435,135 @@ if __name__ == "__main__":
     # Parse the XML file
     parser.parse("products2.xml")
 ```
+
+
+## CSV
+
+https://github.com/janbodnar/Python-Skolenie/blob/master/stdlib/csv/README.md
+
+```python
+import csv
+vals = []
+
+with open('numbers.csv', 'r') as f:
+
+    reader = csv.reader(f)
+
+    for row in reader:
+
+        for e in row:
+            print(e)
+            vals.append(int(e))
+print(vals)
+```
+
+-- delimiter iny 
+
+```python
+import csv
+
+with open('items.csv', 'r') as f:
+
+    reader = csv.reader(f, delimiter="|")
+
+    for row in reader:
+
+        for e in row:
+            print(e)
+```python
+
+--zahlavia csv
+
+```python
+import csv
+
+with open('values.csv', 'r') as f:
+
+    reader = csv.DictReader(f)
+
+    for row in reader:
+        print(row['min'], row['avg'], row['max'])
+```
+
+--basic stats
+
+```python
+import csv
+import statistics
+
+salaries = []
+
+with open('users.csv', 'r') as f:
+
+    reader = csv.DictReader(f)
+    total_salaries = 0
+
+    for row in reader:
+        salary = int(row['salary'])
+        total_salaries += salary
+        salaries.append(salary)
+
+# print(salaries)
+print('total:', total_salaries)
+print('count:', len(salaries))
+print('max:', max(salaries))
+print('min:', min(salaries))
+print('average:', statistics.mean(salaries))
+print('median:',statistics.median(salaries))
+```
+
+
+-- zapisovanie do csv s hlavickou
+
+```python
+import csv
+
+with open('names.csv', 'w') as f:
+
+    fnames = ['first_name', 'last_name']
+    writer = csv.DictWriter(f, fieldnames=fnames)
+
+    writer.writeheader()
+    writer.writerow({'first_name' : 'John', 'last_name': 'Smith'})
+    writer.writerow({'first_name' : 'Robert', 'last_name': 'Brown'})
+    writer.writerow({'first_name' : 'Julia', 'last_name': 'Griffin'})
+```
+
+## fetch csv data
+
+```python
+import requests
+import csv
+
+
+def dowload_data():
+
+    url = 'https://webcode.me/users.csv'
+
+    resp = requests.get(url)
+    data = resp.text
+
+    filename = 'users3.csv'
+    with open(filename, 'w') as f:
+
+        f.write(data)
+
+
+def read_users():
+
+    users = []
+
+    filename = 'users3.csv'
+    with open(filename, 'r') as f:
+
+        reader = csv.DictReader(f)
+
+        for line in reader:
+            users.append(line)
+
+
+    print(users[:11])
+
+# dowload_data()
+read_users()
+```
