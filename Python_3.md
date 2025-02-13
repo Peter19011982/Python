@@ -82,3 +82,92 @@ print(users)
 # [User(first_name='Peter', last_name=' Sabol', occupation=' IT'), User(first_name='John', last_name=' Travolta', occupation=' Actor'), User(first_name='Miso', last_name=' Hanak', occupation=' IT')]
 
 ```
+
+
+## WEB REQUESTS
+https://github.com/janbodnar/Python-Skolenie/blob/master/libs/requests.md
+https://github.com/janbodnar/Python-Skolenie/tree/master/libs/requests
+
+-- pip install requests
+
+```python
+#!/usr/bin/python
+
+
+import requests as req
+url = "http://webcode.me"
+resp = req.get(url)
+
+print(resp.text)
+print(resp.headers)
+print(resp.status_code)
+print(resp.history)
+print(resp.url)
+
+resp1 = req.request(method='GET', url="http://webcode.me")
+print(resp1.text)
+```
+
+
+-- parsovanie do json
+
+```python
+import requests 
+
+resp = requests.get('https://jsonplaceholder.typicode.com/posts')
+posts = resp.json()
+
+print(posts)
+
+for post in posts:
+    print(f"Id: {post['id']}")
+    print(f"Title: {post['title']}")
+    print(f"Body: {post['body']}")
+```
+
+## Basic standard modules
+https://github.com/janbodnar/Python-Skolenie/blob/master/basic_std_modules.md
+
+```python
+import subprocess
+
+def show_edit_environment_variables_dialog():
+    try:
+        # Command to open the System Properties window
+        command = "SystemPropertiesAdvanced"
+
+        # Run the command using subprocess
+        subprocess.run(command, shell=True)
+
+    except Exception as e:
+        print(f"An error occurred: {e}")
+
+if __name__ == "__main__":
+    show_edit_environment_variables_dialog()
+```
+
+-- ktory python na ntb pouzivam
+
+
+```python
+import sys
+
+print(sys.executable)
+```
+
+-- ake moduly su nainstalovane v python  
+
+
+```python
+import sys
+
+print(sys.modules)
+
+for m in sys.modules:
+    print(m)
+
+import math, os, random
+
+for m in sys.modules:
+    print(m)
+```
