@@ -322,7 +322,6 @@ with zipfile.ZipFile('pyarchive.zip', 'r') as zip_ref:
 
 -- extact konkretny subor
 
-
 ```
 #!/usr/bin/python
 
@@ -334,4 +333,105 @@ with zipfile.ZipFile('output.zip') as zip:
     zip.extract('funs.py', '.')
 ```
 
- 
+
+-- zaujimavy skript -- pocty vyskytov slov na strankach - len top stranka
+
+
+```python
+
+import httpx
+import asyncio
+import re
+
+
+async def get_async(url):
+    async with httpx.AsyncClient() as client:
+        return await client.get(url)
+
+urls = ['https://www.sme.sk', 'https://www.pravda.sk', 'https://www.hlavnespravy.sk',
+        'https://hnonline.sk', 'https://www.aktuality.sk',
+        'https://dennikn.sk', 'https://www.cas.sk', 'https://www1.pluska.sk']
+
+topics = [{'term': 'Fico', 'pattern': r'Fica|Fico|Ficovi|Ficom', 'count': 0},
+          {'term': 'Putin', 'pattern': r'Putin|Putina|Putinovi|Putinom', 'count': 0},
+          {'term': 'Trump', 'pattern': r'Trump|Trumpa|Trumpovi|Trumpom', 'count': 0},
+          {'term': 'Biden', 'pattern': r'Biden|Biden|Bidenovi|Bidenom', 'count': 0}]
+
+
+def check_terms(data):
+
+    for html in data:
+
+        for topic in topics:
+            pattern = re.compile(topic['pattern'])
+            found = re.findall(pattern, html)
+            if len(found) > 0:
+                topic['count'] += len(found)
+
+
+async def launch():
+    resps = await asyncio.gather(*map(get_async, urls))
+    data = [resp.content.decode('utf8') for resp in resps]
+    check_terms(data)
+
+    for topic in topics:
+        print(topic['term'], topic['count'])
+
+asyncio.run(launch())
+```
+
+
+## XML
+
+https://github.com/janbodnar/Python-Skolenie/tree/master/stdlib/xml
+
+```python
+import xml.sax
+
+class ProductHandler(xml.sax.ContentHandler):
+    def __init__(self):
+        self.current_data = ""
+        self.id = ""
+        self.name = ""
+        self.price = ""
+        self.quantity = ""
+
+    # Call when an element starts
+    def startElement(self, tag, attributes):
+        self.current_data = tag
+        if tag == "product":
+            print(f"\nProduct ID: {attributes['id']}")
+
+    # Call when an element ends
+    def endElement(self, tag):
+        if self.current_data == "name":
+            print(f"Name: {self.name}")
+        elif self.current_data == "price":
+            print(f"Price: {self.price}")
+        elif self.current_data == "quantity":
+            print(f"Quantity: {self.quantity}")
+        self.current_data = ""
+
+    # Call when a character is read
+    def characters(self, content):
+        if self.current_data == "name":
+            self.name = content
+        elif self.current_data == "price":
+            self.price = content
+        elif self.current_data == "quantity":
+            self.quantity = content
+
+if __name__ == "__main__":
+    # Create an XMLReader
+    parser = xml.sax.make_parser()
+    
+    # Turn off namespace
+    parser.setFeature(xml.sax.handler.feature_namespaces, 0)
+    
+    # Override the default ContextHandler
+    Handler = ProductHandler()
+    parser.setContentHandler(Handler)
+    
+    # Parse the XML file
+    parser.parse("products2.xml")
+```
