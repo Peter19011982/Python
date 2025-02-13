@@ -1,6 +1,9 @@
 -- kod prezencka 3899
 -- https://iwww.vse.sk/sys/app/contacts/#/a/es
 
+--rozne skripty hotove ozes pozriet na 
+https://github.com/janbodnar/Python-Skolenie/tree/master/scripts
+
 --kniznca na sikovne programovanie
 pip instal puncy
 
@@ -290,3 +293,45 @@ passwd = "".join(secrets.choice(chars) for i in range(8))
 
 print(passwd)
 ```
+
+## ZIPFILE
+https://github.com/janbodnar/Python-Skolenie/blob/master/basic_std_modules.md#zipfile
+-- na pozretie .zip file  
+
+
+```
+import zipfile
+
+files_to_zip = ['users2.json', 'users4.json']
+
+with zipfile.ZipFile('pyarchive.zip', 'w') as zip:
+    for file in files_to_zip:
+        zip.write(file)
+```
+
+-- extract zip.file
+
+```
+#!/usr/bin/python
+
+import zipfile
+
+with zipfile.ZipFile('pyarchive.zip', 'r') as zip_ref:
+    zip_ref.extractall('tmp')
+```
+
+-- extact konkretny subor
+
+
+```
+#!/usr/bin/python
+
+
+import zipfile
+
+with zipfile.ZipFile('output.zip') as zip:
+
+    zip.extract('funs.py', '.')
+```
+
+ 
