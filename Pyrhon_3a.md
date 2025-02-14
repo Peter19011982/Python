@@ -3,6 +3,7 @@
 -- databazy na datovu analyzu: pandas, dukeDB
 -- AI - deepseek, copilot, perplexity
 -- ollama interny AI
+-- streamlit.io - urobi demo, dashboard jednoduchym sposobom
 
 ```python
 import funcy
@@ -357,3 +358,14 @@ with open(filename, 'r') as f:
 ```
 ## Date and time
 -- https://github.com/janbodnar/Python-Skolenie/blob/master/date_time.md
+
+## tvorba web aplikacii pythonom
+-- https://github.com/janbodnar/Python-Skolenie/blob/master/flask.md
+1. novy adresar
+2. pip install flask
+3. spustit v cmd: flask run 
+4. klik na ip adresu
+
+![image](https://github.com/user-attachments/assets/963085f7-dd40-45d6-8744-894083ef6102)
+
+![image](https://github.com/user-attachments/assets/df903c6a-0ebc-4c37-b595-4bda87373d52)
