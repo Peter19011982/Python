@@ -145,7 +145,7 @@ date_of_birth,first_name,last_name
 1994,Patrick,Dempsey
 
 
----- prvy sposob sortovanie
+---- prvy sposob sortovania csv slovnik
 
 ```python
 import csv
@@ -174,7 +174,7 @@ for user in users:
     print(user)
 ```
 
--- druhy sposob sortovanie
+-- druhy sposob sortovania csv slovnik
 ```python
 import csv
 
@@ -191,4 +191,34 @@ sorted_users = sorted(users, key=lambda x: x["last_name"])
 print("date_of_birth,first_name,last_name")  # Print the header
 for user in sorted_users:
     print(f"{user['date_of_birth']},{user['first_name']},{user['last_name']}")
+```
+
+-- Sort list by multiple sort criteria
+(https://github.com/janbodnar/Python-Skolenie/blob/master/sort.md#sort-list-by-multiple-sort-criteria)
+
+```python
+from dataclasses import dataclass
+
+@dataclass
+class Student:
+    id: int
+    name: str
+    grade: str
+    age: int
+
+s1 = Student(1, 'Patrick', 'A', 21)
+s2 = Student(2, 'Lucia', 'B', 19)
+s3 = Student(3, 'Robert', 'C', 19)
+s4 = Student(4, 'Monika', 'A', 22)
+s5 = Student(5, 'Thomas', 'D', 20)
+s6 = Student(6, 'Petra', 'B', 18)
+s6 = Student(7, 'Sofia', 'A', 18)
+s7 = Student(8, 'Harold', 'E', 22)
+s8 = Student(9, 'Arnold', 'B', 23)
+
+students = [s1, s2, s3, s4, s5, s6, s7, s8]
+students.sort(key=lambda s: (s.grade, s.age))
+
+for student in students:
+    print(student)
 ```
