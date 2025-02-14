@@ -1,5 +1,8 @@
 ## OPAKOVANIE
 
+-- databazy na datovu analyzu: pandas, dukeDB
+-- AI - deepseek, copilot, perplexity
+
 ```python
 import funcy
 
@@ -221,4 +224,39 @@ students.sort(key=lambda s: (s.grade, s.age))
 
 for student in students:
     print(student)
+```
+
+## Parsovanie XSLX
+-- https://github.com/janbodnar/Python-Skolenie/blob/master/libs/openpyxl.md
+
+pip install openpyxl
+-- vytvorenie excelu a citanie z neho
+```python
+from openpyxl import Workbook
+import time
+
+book = Workbook()
+sheet = book.active
+
+sheet['A1'] = 56
+sheet['A2'] = 43
+
+now = time.strftime("%x")
+sheet['A3'] = now
+
+book.save("sample.xlsx")
+
+import openpyxl
+
+book = openpyxl.load_workbook('sample.xlsx')
+
+sheet = book.active
+
+a1 = sheet['A1']
+a2 = sheet['A2']
+a3 = sheet.cell(row=3, column=1)
+
+print(a1.value)
+print(a2.value)
+print(a3.value)
 ```
