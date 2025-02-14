@@ -2,6 +2,7 @@
 
 -- databazy na datovu analyzu: pandas, dukeDB
 -- AI - deepseek, copilot, perplexity
+-- ollama interny AI
 
 ```python
 import funcy
@@ -310,3 +311,49 @@ for email in emails:
     else:
         print(f'{email} does not match')
 ```
+-- split by 2 chars - regular
+```python
+import re
+
+data = '1,2,3;4;5,6,7;8;9;10'
+
+pattern = re.compile(r'[;,]')
+vals = re.split(pattern, data)
+
+print(sum(map(int, vals)))
+```
+
+```python
+import re
+
+
+words = ['sky  ', '\t\twar', 'water\n\n', '\t\ncup', 'sky']
+cleaned = []
+pattern = re.compile(r'\s+')
+
+for word in words:
+
+    cleaned_word = re.sub(pattern, '', word)
+    cleaned.append(cleaned_word)
+
+print(words)
+print(cleaned)
+```
+
+## clean words 
+-- ocistenie od interp. znamienok
+```python
+import re
+filename = 'data.txt'
+
+with open(filename, 'r') as f:
+
+    text = f.read()
+    pattern = re.compile(r'[,;.]')
+
+    text_cleaned = re.sub(pattern, '', text)
+    words = text_cleaned.split()
+    print(words)
+```
+## Date and time
+-- https://github.com/janbodnar/Python-Skolenie/blob/master/date_time.md
