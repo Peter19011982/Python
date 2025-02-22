@@ -59,6 +59,11 @@ print('passed')
 
 # Read all users into a list of User objects
 # Use data classes
+# user2.csv
+#Peter, Sabol, IT
+#John, Travolta, Actor
+#Miso, Hanak, IT
+
 from dataclasses import dataclass
 
 @dataclass
