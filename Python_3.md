@@ -556,7 +556,7 @@ def dowload_data():
 
 
 def read_users():
-
+    dowload_data()
     users = []
 
     filename = 'users3.csv'
