@@ -266,7 +266,7 @@ with open('users.json', 'w') as f:
     f.write(data)
 ```
 
--- funkcia json()
+-- funkcia json() + dump = nacitanie json z web a vytvorenie json file pomocou dump
 
 ```python
 import requests, json
