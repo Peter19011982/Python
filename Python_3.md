@@ -1,7 +1,7 @@
 -- kod prezencka 3899
 -- https://iwww.vse.sk/sys/app/contacts/#/a/es
 
---rozne skripty hotove ozes pozriet na 
+--rozne skripty hotove mozes pozriet na 
 https://github.com/janbodnar/Python-Skolenie/tree/master/scripts
 
 --kniznca na sikovne programovanie
