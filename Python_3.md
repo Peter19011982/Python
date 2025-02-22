@@ -475,9 +475,10 @@ with open('items.csv', 'r') as f:
 
         for e in row:
             print(e)
-```python
+```
 
 --zahlavia csv
+
 
 ```python
 import csv
