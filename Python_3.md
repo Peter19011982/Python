@@ -197,7 +197,7 @@ print(sys.path)
 ## JSON
 https://github.com/janbodnar/Python-Skolenie/blob/master/basic_std_modules.md#json
 
---vytvorenie json
+--vytvorenie json zo slovnika
 ```python
 #!/usr/bin/python
 
@@ -214,7 +214,7 @@ with open(fname, 'w') as f:
 
 
 
---nacitanie do slovnika
+--nacitanie json do slovnika
  
 ```python
 #!/usr/bin/python
@@ -231,7 +231,7 @@ with open(fname) as f:
 ```
 
 
--- loads zo stringu
+-- loads: nacitanie json do slovnika (rychlejsie)
 ```python
 #!/usr/bin/python
 
