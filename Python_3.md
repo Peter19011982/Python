@@ -580,11 +580,12 @@ read_users()
 https://github.com/janbodnar/Python-Skolenie/blob/master/venv.md
 
 - virtualne prostredie
+  - exportovat zoznam balikov z predchadzajuceho prostredia: pip freeze > requirements.txt
   - vytvorit adresar a otvorit ho vo vs code
   - vytvorenie virt. prostredia    py -m venv myenv
   - akivacia                   myenv\Scripts\activate
   - deaktivacia
-  - requirements.tx           pip install -r requirements.txt
+  - nainstalacia balikov requirements.txt           pip install -r requirements.txt
  
 ## POSTGRES
 
