@@ -1,8 +1,11 @@
 ## OPAKOVANIE
 
 -- databazy na datovu analyzu: pandas, dukeDB
+
 -- AI - deepseek, copilot, perplexity
+
 -- ollama interny AI
+
 -- streamlit.io - urobi demo, dashboard jednoduchym sposobom
 
 ```python
