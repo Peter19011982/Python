@@ -53,8 +53,8 @@ about him, be sure there is more in that man than you perhaps think for.
 filename = 'data.txt'
 
 with open(filename, 'r') as f:
-    ...
-    number_of_words = ...
+    text = f.read() 
+    number_of_words = len(text.split())
 
 assert number_of_words == 117, 'failed'
 print('passed')
