@@ -182,7 +182,7 @@ for user in users:
     print(user)
 ```
 
--- druhy sposob sortovania csv slovnik
+-- druhy sposob sortovania csv list
 ```python
 import csv
 
