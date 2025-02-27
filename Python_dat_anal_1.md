@@ -699,6 +699,7 @@ with psycopg.connect(cs) as con:
 
 
 --OPENROUTER_API_KEY: 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
+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
 
 --https://github.com/janbodnar/Python-Datovy-Analytik-Skolenie/blob/main/ai.md#openrouter
 
