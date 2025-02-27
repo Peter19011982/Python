@@ -72,3 +72,6 @@ print(stdev)
 var = statistics.variance(scores)
 print(var)
 ```
+
+
+ff
