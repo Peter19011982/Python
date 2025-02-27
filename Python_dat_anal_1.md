@@ -110,9 +110,9 @@ print(cor)
 
 --  https://github.com/janbodnar/Python-Datovy-Analytik-Skolenie/blob/main/test.md#multiple-data-sources
 
--- 3 zdroje:
+-- 3 zdroje: excel, DB, web
 
--- 1. vytvorit excel:
+-- 1. vytvorit excel:  pip install openpyxl
 
 ```python
 import openpyxl
@@ -143,7 +143,7 @@ workbook.save("byty.xlsx")
 print("Excel file 'byty.xlsx' created successfully!")
 ```
 
--- 2. druhy zdroj DB
+-- 2. druhy zdroj DB:  sqllitedb (mala suborova databaza)
 
 -- create_db_table.py
 ```python
@@ -238,3 +238,7 @@ for mesto, group in grouped_mesto:
     for e in group:
         print(e)
 ```
+
+-- problem su nestrukturovane data (napr. bazos) - tie ak chcem spracovat ako dataset, tak mame problem... pouzijeme AI
+
+
