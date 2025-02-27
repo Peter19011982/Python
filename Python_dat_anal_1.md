@@ -515,10 +515,13 @@ with psycopg.connect(cs) as con:
                     f.write(row)
 ```
 
--- nova tabulka cars2
+
 
 
 -- https://github.com/janbodnar/Python-Datovy-Analytik-Skolenie/blob/main/psycopg.md#copy_to
+
+
+-- do novej tabulky cars2
 
 
 ```python
