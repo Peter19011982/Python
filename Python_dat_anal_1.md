@@ -37,7 +37,9 @@ print(sorted(salaries))
 
 --vazeny priemer  Weighted mean
 
+
 --https://github.com/janbodnar/Python-Datovy-Analytik-Skolenie/blob/main/statistics.md#weighted-mean
+
 
 ```python
 import statistics
@@ -58,7 +60,10 @@ for u in users:
 ```
 
 --standardna odchylka  Standard deviation
+
+
 --https://github.com/janbodnar/Python-Datovy-Analytik-Skolenie/blob/main/statistics.md#standard-deviation
+
 
 ```python
 import statistics
@@ -75,7 +80,9 @@ print(var)
 
 -- korelacia (napr medzi vekom a platom)
 
+
 --https://github.com/janbodnar/Python-Datovy-Analytik-Skolenie/blob/main/statistics.md#correlation
+
 
 ```python
 # predtym  vytvorit data.csv
@@ -253,6 +260,8 @@ for mesto, group in grouped_mesto:
         print(e)
 ```
 
+
+## Nestrukturovane data
 -- problem su nestrukturovane data (napr. bazos) - tie ak chcem spracovat ako dataset, tak mame problem... pouzijeme AI
 
 
