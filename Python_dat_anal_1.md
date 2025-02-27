@@ -594,3 +594,93 @@ with psycopg.connect(cs) as con:
                 for line in f:
                     copy.write(line)
 ```
+
+
+## Get SHMU data
+
+
+-- nacitanie vysky hladiny zo shmu
+
+
+```python
+import pandas
+
+# pip install pandas lxml 
+
+url = "https://www.shmu.sk/sk/?page=1&id=hydro_vod_all&station_id=5127"
+
+df_list = pandas.read_html(url)
+
+df = df_list[1]
+
+# Display the DataFrame
+df.to_csv('shmu.csv', index=False)
+```
+
+
+## mock dada
+
+-- https://github.com/janbodnar/Python-Datovy-Analytik-Skolenie/blob/main/data/mock_data.csv
+
+
+-- csv cko, s ktorym budem pracovat
+
+-- do DB
+```python
+import csv
+import psycopg
+
+
+file_name = 'mock_data.csv'
+users = []
+
+
+with open(file_name, 'r') as fd:
+
+    reader = csv.DictReader(fd)
+
+    for line in reader:
+
+        row = int(line['id']), line['first_name'], line['last_name'], line['active'], line['entries'], line['DoB']
+
+        users.append(row)
+
+
+cs = "dbname='testdb' user='postgres' password='postgres'"
+
+with psycopg.connect(cs) as con:
+        
+    with con.cursor() as cur:
+
+        cur.execute("DROP TABLE IF EXISTS users_mock")
+        cur.execute(
+            "CREATE TABLE users_mock(id SERIAL PRIMARY KEY, first_name VARCHAR(255), last_name VARCHAR(255), active VARCHAR(10), entries VARCHAR(10), DoB VARCHAR(10))")
+
+        query = "INSERT INTO users_mock (id, first_name, last_name, active, entries, dob) VALUES (%s, %s, %s, %s, %s, %s)"
+        cur.executemany(query, users)
+```
+
+# get username/password from env variables  premenne prostredia DB credentions
+
+
+```python
+import os
+import psycopg
+
+
+username = os.environ.get('DB_USERNAME')
+password = os.environ.get('DB_PASSWORD')
+
+cs = f"dbname='testdb' user={username} password={password}"
+
+with psycopg.connect(cs) as con:
+        
+        with con.cursor() as cur:
+    
+            cur.execute("SELECT * FROM cars")
+            rows = cur.fetchall()
+
+            for row in rows:
+                print(f"{row[0]} {row[1]} {row[2]}")
+```
+
