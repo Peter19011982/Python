@@ -660,7 +660,9 @@ with psycopg.connect(cs) as con:
         cur.executemany(query, users)
 ```
 
-# get username/password from env variables  premenne prostredia DB credentions
+# get username/password from env variables  
+
+--premenne prostredia DB credentions
 
 
 ```python
@@ -684,3 +686,14 @@ with psycopg.connect(cs) as con:
                 print(f"{row[0]} {row[1]} {row[2]}")
 ```
 
+# SQL 
+
+-- https://github.com/janbodnar/Python-Datovy-Analytik-Skolenie/blob/main/sql.md
+
+
+
+## AI
+
+-- https://openrouter.ai/
+-- login google ucet
+--OPENROUTER_API_KEY: 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
