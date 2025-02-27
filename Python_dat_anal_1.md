@@ -268,3 +268,131 @@ for mesto, group in grouped_mesto:
 -- problem su nestrukturovane data (napr. bazos) - tie ak chcem spracovat ako dataset, tak mame problem... pouzijeme AI
 
 
+## praca s Databazou Postgres  
+
+-- https://github.com/janbodnar/Python-Datovy-Analytik-Skolenie/blob/main/psycopg.md
+
+-- pip install "psycopg[binary,pool]"
+-- testdb mam vytvorenu
+
+```python
+import psycopg
+
+cs = "dbname='testdb' user='postgres' password='postgres'"
+
+# with aj otvori modul aj ho potom uzavrie
+with psycopg.connect(cs) as con:
+
+    with con.cursor() as cur:
+        
+        cur.execute('SELECT version()')
+
+# tu je n-tica vysledkom, cize my potrebujeme len 0-ty prvok zobrazit
+        version = cur.fetchone()[0]
+        print(version)
+```
+
+## Execute funkcia
+
+
+--https://github.com/janbodnar/Python-Datovy-Analytik-Skolenie/blob/main/psycopg.md#execute
+
+```python
+import psycopg
+
+
+cs = "dbname='testdb' user='postgres' password='postgres'"
+
+with psycopg.connect(cs) as con:
+
+    with con.cursor() as cur:
+
+        cur.execute("DROP TABLE IF EXISTS cars")
+        cur.execute("CREATE TABLE cars(id SERIAL PRIMARY KEY, name VARCHAR(255), price INT)")
+        cur.execute("INSERT INTO cars(name, price) VALUES('Audi', 52641)")
+        cur.execute("INSERT INTO cars(name, price) VALUES('Mercedes', 57127)")
+        cur.execute("INSERT INTO cars(name, price) VALUES('Skoda', 9000)")
+        cur.execute("INSERT INTO cars(name, price) VALUES('Volvo', 29000)")
+        cur.execute("INSERT INTO cars(name, price) VALUES('Bentley', 350000)")
+        cur.execute("INSERT INTO cars(name, price) VALUES('Citroen', 21000)")
+        cur.execute("INSERT INTO cars(name, price) VALUES('Hummer', 41400)")
+        cur.execute("INSERT INTO cars(name, price) VALUES('Volkswagen', 21600)")
+```
+
+-- naplnenie DB tabulky z n-tice
+
+
+```python
+import psycopg
+
+cars = (
+    (1, 'Audi', 551111),
+    (2, 'Mercedes', 57127),
+    (3, 'Skoda', 9000),
+    (4, 'Volvo', 29000),
+    (5, 'Bentley', 350000),
+    (6, 'Citroen', 21000),
+    (7, 'Hummer', 41400),
+    (8, 'Volkswagen', 21600)
+)
+
+cs = "dbname='testdb' user='postgres' password='postgres'"
+
+with psycopg.connect(cs) as con:
+        
+    with con.cursor() as cur:
+
+        cur.execute("DROP TABLE IF EXISTS cars")
+        cur.execute(
+            "CREATE TABLE cars(id SERIAL PRIMARY KEY, name VARCHAR(255), price INT)")
+
+        query = "INSERT INTO cars (id, name, price) VALUES (%s, %s, %s)"
+        cur.executemany(query, cars)
+```
+
+-- https://github.com/janbodnar/Python-Datovy-Analytik-Skolenie/blob/main/psycopg.md#last-row-id
+
+```python
+import psycopg
+
+cs = "dbname='testdb' user='postgres' password='s$cret'"
+
+with psycopg.connect(cs) as con:
+        
+    with con.cursor() as cur:
+
+        cur.execute("DROP TABLE IF EXISTS words")
+        cur.execute("CREATE TABLE words(id SERIAL PRIMARY KEY, word VARCHAR(255))")
+        cur.execute("INSERT INTO words(word) VALUES('forest') RETURNING id")
+        cur.execute("INSERT INTO words(word) VALUES('cloud') RETURNING id")
+        cur.execute("INSERT INTO words(word) VALUES('valley') RETURNING id")
+
+        last_row_id = cur.fetchone()[0]
+
+        print(f"The last Id of the inserted row is {last_row_id}")
+```
+
+
+
+
+--fetch all
+
+-- https://github.com/janbodnar/Python-Datovy-Analytik-Skolenie/blob/main/psycopg.md#fetch_all
+
+```python
+import psycopg
+
+cs = "dbname='testdb' user='postgres' password='s$cret'"
+
+with psycopg.connect(cs) as con:
+        
+        with con.cursor() as cur:
+    
+            cur = con.cursor()
+            cur.execute("SELECT * FROM cars")
+
+            rows = cur.fetchall()
+
+            for row in rows:
+                print(f"{row[0]} {row[1]} {row[2]}")
+```
