@@ -542,3 +542,55 @@ with psycopg.connect(cs) as con:
                 for line in f:
                     copy.write(line)
 ```
+
+-- vygenerovanie users.csv s 150 000 zaznamami a naplnenie DB tabulky users s tymito datami:
+
+--  vygenerovanie users.csv s 150 000 zaznamami
+
+
+```python
+import faker
+
+
+file_name = 'users.csv'
+
+faker = faker.Faker()
+
+i = 1
+
+with open(file_name, 'w') as fd:
+
+    fd.write(f'id,first_namne,last_name,email\n')
+
+    for _ in range(150_000):
+        first_name = faker.first_name()
+        last_name = faker.last_name()
+        email = faker.email()
+
+        fd.write(f'{i},{first_name},{last_name},{email}\n')
+        
+        i += 1
+
+    print('file successfully created')
+```
+
+--naplnenie DB tabulky users tymito datami
+
+```python
+import psycopg
+
+cs = "dbname='testdb' user='postgres' password='postgres'"
+with psycopg.connect(cs) as con:
+
+    with con.cursor() as cur:
+
+        cur.execute('DROP TABLE IF EXISTS users')
+        cur.execute('CREATE TABLE users(id SERIAL PRIMARY KEY, first_name VARCHAR(255), last_name VARCHAR(255), email VARCHAR(255))')
+
+        with open('users.csv', 'r') as f:
+
+            with cur.copy("COPY users FROM STDIN WITH CSV HEADER") as copy:
+
+                for line in f:
+                    copy.write(line)
+```
