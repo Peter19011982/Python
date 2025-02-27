@@ -146,8 +146,22 @@ print("Excel file 'byty.xlsx' created successfully!")
 -- 2. druhy zdroj DB:  sqllitedb (mala suborova databaza)
 
 -- create_db_table.py
+
 ```python
-create_db_table.py
+import sqlite3
+
+con = sqlite3.connect('test.db')
+
+with con:
+    
+    cur = con.cursor()    
+    cur.execute("CREATE TABLE byty(id INTEGER PRIMARY KEY, typ TEXT, mesto TEXT, cena INT)")
+    cur.execute("INSERT INTO byty(typ, mesto, cena) VALUES('1i', 'Bratislava', 99800)")
+    cur.execute("INSERT INTO byty(typ, mesto, cena) VALUES('2i', 'Bratislava', 124000)")
+    cur.execute("INSERT INTO byty(typ, mesto, cena) VALUES('3i', 'Bratislava', 230000)")
+    cur.execute("INSERT INTO byty(typ, mesto, cena) VALUES('1i', 'Bratislava', 119000)")
+    cur.execute("INSERT INTO byty(typ, mesto, cena) VALUES('2i', 'Bratislava', 250800)")
+    cur.execute("INSERT INTO byty(typ, mesto, cena) VALUES('1i', 'Bratislava', 90800)")
 ```
 
 -- 3. treti zdroj web https://webcode.me/byty.csv
