@@ -107,3 +107,34 @@ print(user_income)
 cor = statistics.correlation(user_age, user_income, method='ranked')
 print(cor)
 ```
+
+--  https://github.com/janbodnar/Python-Datovy-Analytik-Skolenie/blob/main/test.md#multiple-data-sources
+
+```python
+import openpyxl
+
+# Create a new workbook and select the active worksheet
+workbook = openpyxl.Workbook()
+worksheet = workbook.active
+
+# Set the headers
+headers = ["id", "typ", "mesto", "cena"]
+worksheet.append(headers)
+
+# Add the data
+data = [
+    [1, "1i", "Košice", 69000],
+    [2, "2i", "Michalovce", 74500],
+    [3, "1i", "Prešov", 87000],
+    [4, "3i", "Košice", 120000],
+    [5, "4i", "Košice", 140000],
+    [6, "2i", "Bardejov", 87000]
+]
+
+for row in data:
+    worksheet.append(row)
+
+# Save the workbook
+workbook.save("byty.xlsx")
+print("Excel file 'byty.xlsx' created successfully!")
+```
