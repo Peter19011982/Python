@@ -696,4 +696,36 @@ with psycopg.connect(cs) as con:
 
 -- https://openrouter.ai/
 -- login google ucet
+
+
 --OPENROUTER_API_KEY: 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
+
+--https://github.com/janbodnar/Python-Datovy-Analytik-Skolenie/blob/main/ai.md#openrouter
+
+--- pip install openai
+--- time.sleep(3)
+
+```python
+
+import time
+
+from openai import OpenAI
+import os
+
+client = OpenAI(
+  base_url="https://openrouter.ai/api/v1",
+  api_key=os.environ["OPENROUTER_API_KEY"],
+)
+
+completion = client.chat.completions.create(
+  model="deepseek/deepseek-r1:free",
+  messages=[
+    {
+      "role": "user",
+      "content": "What is the meaning of life?"
+    }
+  ]
+)
+
+print(completion.choices[0].message.content)
+```
