@@ -110,6 +110,8 @@ print(cor)
 
 --  https://github.com/janbodnar/Python-Datovy-Analytik-Skolenie/blob/main/test.md#multiple-data-sources
 
+-- 3 zdroje:
+
 -- 1. vytvorit excel:
 
 ```python
@@ -141,14 +143,14 @@ workbook.save("byty.xlsx")
 print("Excel file 'byty.xlsx' created successfully!")
 ```
 
--- druhy zdroj DB
+-- 2. druhy zdroj DB
 
 -- create_db_table.py
 ```python
 create_db_table.py
 ```
 
--- treti zdroj web
+-- 3. treti zdroj web https://webcode.me/byty.csv
 
 -- pip install requests
 
