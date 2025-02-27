@@ -140,3 +140,99 @@ for row in data:
 workbook.save("byty.xlsx")
 print("Excel file 'byty.xlsx' created successfully!")
 ```
+
+-- druhy zdroj DB
+
+-- create_db_table.py
+```python
+create_db_table.py
+```
+
+-- treti zdroj web
+
+-- pip install requests
+
+-- hlavy program:
+
+```python
+import sqlite3
+import openpyxl
+import requests
+import csv
+import uuid
+from collections import namedtuple
+from itertools import groupby
+
+
+Byt = namedtuple('Byt', 'id typ mesto cena')
+
+byty = []
+
+
+def read_db():
+    with sqlite3.connect('test.db') as con:
+        cur = con.cursor()
+        cur.execute("SELECT * FROM byty")
+        rows = cur.fetchall()
+        for row in rows:
+            byty.append(row)
+
+
+def read_excel():
+
+    workbook = openpyxl.load_workbook('byty.xlsx')
+    worksheet = workbook.active
+
+    for row in worksheet.iter_rows(min_row=2, values_only=True):
+        byty.append(row)
+
+
+def fetch_csv():
+
+    url = 'https://webcode.me/byty.csv'
+    resp = requests.get(url)
+
+    resp.raise_for_status()
+
+    data = resp.text
+
+    reader = csv.DictReader(data.splitlines())
+    byty_csv = [(row['id'], row['typ'], row['mesto'], int(row['cena']))
+                for row in reader]
+
+    byty.extend(byty_csv)
+
+
+read_db()
+read_excel()
+fetch_csv()
+
+for byt in byty:
+    print(byt)
+
+print('---------------------------------')
+print('ID cka nie su v poriadku- vysporiadame sa s tym tak, ze tie IDcka budem ignotrovat')
+print('---------------------------------')
+print('budeme generovat nove IDcka pomocou uuid.uuid4()' )
+
+byty_cleaned = [Byt(uuid.uuid4(), e[1], e[2], e[3]) for e in byty]
+
+sorted_cena = sorted(byty_cleaned, key=lambda x: x.cena)
+
+print('sorted by cena')
+
+for e in sorted_cena:
+    print(e)
+
+print('---------------------------------')
+
+print('grouped by mesto')
+
+sorted_mesto = sorted(byty_cleaned, key=lambda x: x.mesto)
+grouped_mesto = groupby(sorted_mesto, key=lambda x: x.mesto)
+
+for mesto, group in grouped_mesto:
+    print(mesto)
+    for e in group:
+        print(e)
+```
