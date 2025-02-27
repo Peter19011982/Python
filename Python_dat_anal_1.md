@@ -110,10 +110,12 @@ print(cor)
 
 --  https://github.com/janbodnar/Python-Datovy-Analytik-Skolenie/blob/main/test.md#multiple-data-sources
 
+-- 1. vytvorit excel:
+
 ```python
 import openpyxl
-
-# Create a new workbook and select the active worksheet
+# vytvori novy excel byty.xlsx subor a vyplni ho datami
+# Create a new workbook and select the active worksheet 
 workbook = openpyxl.Workbook()
 worksheet = workbook.active
 
