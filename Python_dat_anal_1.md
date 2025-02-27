@@ -115,6 +115,9 @@ cor = statistics.correlation(user_age, user_income, method='ranked')
 print(cor)
 ```
 
+## Praca s viacerymi zdrojmi:
+
+
 --  https://github.com/janbodnar/Python-Datovy-Analytik-Skolenie/blob/main/test.md#multiple-data-sources
 
 -- 3 zdroje: excel, DB, web
