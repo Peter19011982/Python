@@ -396,3 +396,98 @@ with psycopg.connect(cs) as con:
             for row in rows:
                 print(f"{row[0]} {row[1]} {row[2]}")
 ```
+
+-- Dictionaly cursor
+
+--https://github.com/janbodnar/Python-Datovy-Analytik-Skolenie/blob/main/psycopg.md#dictionary-cursor
+
+```python
+import psycopg
+
+cs = "dbname='testdb' user='postgres' password='s$cret'"
+
+with psycopg.connect(cs) as con:
+
+    with con.cursor(row_factory=psycopg.rows.dict_row) as cur:
+        
+        cur.execute("SELECT * FROM cars")
+
+        rows = cur.fetchall()
+
+        for row in rows:
+            print(f"{row['id']} {row['name']} {row['price']}")
+```
+
+-- Paremetriczovane query
+
+--- https://github.com/janbodnar/Python-Datovy-Analytik-Skolenie/blob/main/psycopg.md#parameterized-queries
+
+```python
+import psycopg
+
+cs = "dbname='testdb' user='postgres' password='s$cret'"
+
+with psycopg.connect(cs) as con:
+
+    uId = 1
+    uPrice = 62300
+
+    with con.cursor() as cur:
+        cur.execute("UPDATE cars SET price=%s WHERE id=%s", (uPrice, uId))
+
+        print(f"Number of rows updated: {cur.rowcount}")
+```
+
+--alebo ako slovnik
+
+```python
+import psycopg
+
+uid = 3
+cs = "dbname='testdb' user='postgres' password='s$cret'"
+
+with psycopg.connect(cs) as con:
+
+    with con.execute("SELECT * FROM cars WHERE id=%(id)s", {'id': uid}) as cur:
+        
+        row = cur.fetchone()
+        print(f'{row[0]} {row[1]} {row[2]}')
+```
+
+-- METADATA - ako zistit ako sa volaju jednotlive stlpce Db tabulky
+
+
+-- https://github.com/janbodnar/Python-Datovy-Analytik-Skolenie/blob/main/psycopg.md#metadata
+
+```python
+import psycopg
+
+cs = "dbname='testdb' user='postgres' password='s$cret'"
+
+with psycopg.connect(cs) as con:
+
+    with con.execute('SELECT * FROM cars') as cur:
+
+        col_names = [cn[0] for cn in cur.description]
+        rows = cur.fetchall()
+
+        print(f'{col_names[0]} {col_names[1]} {col_names[2]}')
+```
+
+-- vsetky tabulky v DB
+
+```python
+import psycopg
+
+cs = "dbname='testdb' user='postgres' password='s$cret'"
+
+with psycopg.connect(cs) as con:
+
+    with con.execute("""SELECT table_name FROM information_schema.tables
+            WHERE table_schema = 'public'""") as cur:
+
+        rows = cur.fetchall()
+
+        for row in rows:
+            print(row[0])
+```
