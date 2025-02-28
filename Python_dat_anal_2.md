@@ -527,9 +527,10 @@ database = "testdb"
 username = "postgres"
 password = "postgres"
 ```
-- main.py do adresara test
+- main.py do adresara test a spustit streamlit run main.py
 
-![image](https://github.com/user-attachments/assets/6b23e036-8847-4d8b-b89d-a64ee802e9b2)
+![image](https://github.com/user-attachments/assets/10cb326b-9bbd-4d5b-ae18-a8093d054ef7)
+
 
 ![image](https://github.com/user-attachments/assets/b7925f6d-8674-4cd3-b241-5c4da5922869)
 
