@@ -2,6 +2,9 @@
 
 ## PANDAS
 
+-- treba si to prebehnut , vela pouzitelnych funkcii na datovu analyzu
+
+
 -- https://github.com/janbodnar/Python-Datovy-Analytik-Skolenie/blob/main/pandas/basics.md
 
 
@@ -128,3 +131,93 @@ df = pd.read_csv("military_spending.csv")
 # print(df)
 print(df.to_string(header=False, index=False))
 ```
+
+## The inplace attribute
+
+
+https://github.com/janbodnar/Python-Datovy-Analytik-Skolenie/blob/main/pandas/basics.md#the-inplace-attribute
+
+```python
+import pandas as pd
+
+file_name = 'countries.csv'
+
+df = pd.read_csv(file_name)
+
+# tu sa nebude nic menit, iba sa vypise
+df2 = df.query("continent == 'Europe'")
+print(df2)
+
+
+# tu sa zmeni povodny dataframe
+# df.query("continent == 'Europe'", inplace=True)
+# print(df)
+```
+
+-- https://github.com/janbodnar/Python-Datovy-Analytik-Skolenie/blob/main/pandas/basics.md#data-type-inference
+
+
+-- vyuzitie ake typy v DB mam nastavit pre dane stlpce
+
+
+-- https://github.com/janbodnar/Python-Datovy-Analytik-Skolenie/blob/main/pandas/basics.md#converters
+
+
+-- https://github.com/janbodnar/Python-Datovy-Analytik-Skolenie/blob/main/pandas/basics.md#missing-values
+
+## IMPORT DATA
+
+-- https://github.com/janbodnar/Python-Datovy-Analytik-Skolenie/blob/main/pandas/import.md
+
+-- pip instal lxml
+
+```python
+import pandas as pd
+
+# URL of the XML file
+url = "https://webcode.me/users.xml"
+
+# Read the XML data into a DataFrame
+df = pd.read_xml(url)
+
+# Display the DataFrame
+print(df)
+```
+
+--https://github.com/janbodnar/Python-Datovy-Analytik-Skolenie/blob/main/pandas/import.md#html-table-to-dataframe
+
+```python
+import pandas as pd
+
+# URL of the HTML page containing the table
+url = "https://webcode.me/users.html"
+
+# Read the HTML table into a DataFrame
+df_list = pd.read_html(url)
+
+# The function returns a list of DataFrames, so we select the first one
+df = df_list[0]
+
+# Display the DataFrame
+print(df)
+```
+
+## PANDAS vs POSTGRES
+
+-- https://github.com/janbodnar/Python-Datovy-Analytik-Skolenie/blob/main/pandas/import.md#postgresql-to-dataframe
+
+```python
+import pandas as pd
+
+# Create the connection string
+cs = 'postgresql://postgres:postgres@localhost/testdb'
+
+# Execute a query to fetch data from the 'users' table
+query = "SELECT * FROM users"
+df = pd.read_sql_query(query, cs)
+
+print(df)
+
+```
+
+
