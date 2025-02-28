@@ -534,3 +534,164 @@ password = "postgres"
 
 ![image](https://github.com/user-attachments/assets/b7925f6d-8674-4cd3-b241-5c4da5922869)
 
+
+## PAGES
+
+https://github.com/janbodnar/Python-Datovy-Analytik-Skolenie/blob/main/streamlit.md#pages
+
+```python
+import streamlit as st
+import pandas as pd
+import numpy as np
+
+
+def page1():
+    st.title("Page 1: Random Data")
+    df = pd.DataFrame(np.random.randn(10, 5), columns=[
+                      'A', 'B', 'C', 'D', 'E'])
+    st.dataframe(df)
+
+
+def page2():
+    st.title("Page 2: Emojis")
+    st.write("Here are some emojis:")
+    st.write(":smile:", ":heart:", ":joy:", ":heart_eyes:", ":cry:", 
+             ":thumbsup:", ":thumbsdown:", ":raised_hands:", ":tada:",
+             ":birthday:", ":dog:", ":sunglasses:", ":pleading_face:", ":shrug:", 
+             ":sparkles:", ":pizza:", ":star2:", ":books:", ":art:")
+
+
+def page3():
+    st.title("Page 3: Lorem Ipsum")
+    st.write("""
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis
+nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
+fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
+culpa qui officia deserunt mollit anim id est laborum.
+""")
+
+
+page_names = ["Random Data", "Emojis", "Lorem Ipsum"]
+selected_page = st.sidebar.selectbox("Select a Page", page_names)
+
+if selected_page == "Random Data":
+    page1()
+elif selected_page == "Emojis":
+    page2()
+else:
+    page3()
+```
+
+![image](https://github.com/user-attachments/assets/b85990f3-45be-42bc-92be-321d7ae12bee)
+
+
+## Multi pages
+
+https://github.com/janbodnar/Python-Datovy-Analytik-Skolenie/blob/main/streamlit.md#multi-page-app-with-configuration
+
+
+![image](https://github.com/user-attachments/assets/7afb9e6f-10ad-4a5f-9736-9ac5d41c329b)
+
+![image](https://github.com/user-attachments/assets/f2f18f81-79ab-4497-a432-917379d40d72)
+
+
+## SELECTOLAX  - parsovanie html,xml dokumentov
+
+https://zetcode.com/python/beautifulsoup/
+
+## live server -- online sa aplikuju zmeny, ktore urobim v html po save .py suboru
+
+## web scrabing bazos
+
+```python
+import itertools
+from bs4 import BeautifulSoup
+import httpx
+import time
+import asyncio
+
+base_url = 'https://reality.bazos.sk'
+url = 'https://reality.bazos.sk/predam/byt/'
+urls = []
+pages = []
+
+
+def get_main_content_div(soup):
+    main_content_div = soup.find('div', class_='maincontent')
+    return main_content_div
+
+
+def get_number_of_ads(main_content_div):
+    inzer_text = main_content_div.find('div', class_='inzeratynadpis').text
+    return int(inzer_text[inzer_text.find('inzerátov z') + len('inzerátov z'):].replace(' ', ''))
+
+
+def get_links(main_content_div):
+    h2_tags = main_content_div.find_all(
+        'h2', class_='nadpis') if main_content_div else []
+
+    # Find all links within these h2 tags
+    links = [h2_tag.find('a')['href']
+             for h2_tag in h2_tags if h2_tag.find('a')]
+
+    if not links:
+        print('No links found')
+        exit(1)
+
+    return links
+
+
+def write_to_file(urls):
+    with open('links.txt', 'w') as f:
+        for url in urls:
+            f.write(f'{url}\n')
+
+
+async def get_async(url):
+    async with httpx.AsyncClient() as client:
+        return await client.get(url)
+
+# def batched(iterable, n):
+#     it = iter(iterable)
+#     batch = list(itertools.islice(it, n))
+#     while batch:
+#         yield batch
+#         batch = list(itertools.islice(it, n))
+
+
+async def launch():
+
+    resp = httpx.get(url)
+    soup = BeautifulSoup(resp.text, 'lxml')
+
+    main_content_div = get_main_content_div(soup)
+    n_ads = get_number_of_ads(main_content_div)
+    print(n_ads)
+
+    for n in range(1, n_ads + 1, 20):
+        page = f'{base_url}/predam/byt/{n}/'
+        pages.append(page)
+
+    # print(pages)
+    # for batch in itertools.batched(pages, 20):
+    #     print(batch)
+
+    for batch in itertools.batched(pages, 20):
+        print('start batch', time.time())
+        resps = await asyncio.gather(*[get_async(page) for page in batch])
+        for resp in resps:
+            soup = BeautifulSoup(resp.text, 'lxml')
+            main_content_div = get_main_content_div(soup)
+            new_links = get_links(main_content_div)
+            new_urls = [f'{base_url}{link}' for link in new_links]
+            urls.extend(new_urls)
+        
+        print('finished batch')
+        await asyncio.sleep(2)
+
+    write_to_file(urls)
+
+asyncio.run(launch())
+```
