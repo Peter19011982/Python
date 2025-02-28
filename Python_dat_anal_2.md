@@ -350,3 +350,42 @@ n = st.slider("Number of rows to display", 3, len(df), value=default_rows)
 # Display the DataFrame with the selected number of rows
 st.table(df.head(n))
 ```
+
+-- https://github.com/janbodnar/Python-Datovy-Analytik-Skolenie/blob/main/streamlit.md#line-chart
+
+-- https://github.com/janbodnar/Python-Datovy-Analytik-Skolenie/blob/main/streamlit.md#map-chart
+
+
+-- https://github.com/janbodnar/Python-Datovy-Analytik-Skolenie/blob/main/streamlit.md#scatter-plot-with-matplotlib
+
+-- dalsia kniznica na grafy
+
+-- streamlit run plotly_streallit_chart.py
+
+```python
+import streamlit as st
+import plotly.express as px
+import pandas as pd
+import numpy as np
+
+# Generate example data
+data = {
+    'Category': ['A', 'B', 'C', 'D'],
+    'Quantity': [10, 20, 30, 40]
+}
+
+df = pd.DataFrame(data)
+
+# Title of the app
+st.title('Pie Chart Example')
+
+# Create a pie chart
+fig = px.pie(df, values='Quantity', names='Category', title='Quantity by Category')
+
+# Display the pie chart using Streamlit
+st.plotly_chart(fig)
+```
+
+## kniznica na grafy - plotly
+-- pip install plotly
+
