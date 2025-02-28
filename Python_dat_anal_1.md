@@ -730,7 +730,7 @@ with psycopg.connect(cs) as con:
 
 -- riesenie mock_data s pandas
 
--- pip instal pandas sqlalchemy psychopg2
+-- pip install pandas sqlalchemy psycopg2
 
 ```python
 import pandas as pd
@@ -754,9 +754,9 @@ print(df)
 # Save to a new CSV file
 df.to_csv('mock_data2.csv', index=False)
 
-# Load the DataFrame to a PostgreSQL table
+# Load the DataFrame to a PostgreSQL table - sqlalchemy
 engine = create_engine('postgresql://postgres:postgres@localhost:5432/testdb')
-df.to_sql('mock_data', engine, if_exists='replace')
+df.to_sql('mock_data2', engine, if_exists='replace')
 ```
 
 
