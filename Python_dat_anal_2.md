@@ -87,3 +87,44 @@ df = pd.DataFrame(data, columns=['Name', 'Age'])
 df.to_csv('users.csv', index=False)
 ```
 
+-- change index
+
+
+```python
+import pandas as pd
+
+df = pd.read_csv("military_spending.csv") 
+df.index = df.index + 1
+
+print(df)
+```
+
+-- custom index
+
+```python
+import pandas as pd
+
+data = {'country': ['Brazil', 'Russia', 'India', 'China', 'South Africa'],
+        'capital': ['Brasilia', 'Moscow', 'New Dehli', 'Beijing', 'Pretoria'],
+        'area': [8.516, 17.10, 3.286, 9.597, 1.221],
+        'population': [200.4, 143.5, 1252, 1357, 52.98]}
+
+df = pd.DataFrame(data)
+print(df)
+
+print('------------------------------')
+
+df.index = ['BR', 'RU', 'IN', 'CH', 'SA']
+print(df)
+```
+
+--no index
+
+```python
+import pandas as pd 
+  
+df = pd.read_csv("military_spending.csv") 
+
+# print(df)
+print(df.to_string(header=False, index=False))
+```
