@@ -387,5 +387,120 @@ st.plotly_chart(fig)
 ```
 
 ## kniznica na grafy - plotly
+https://github.com/janbodnar/Python-Datovy-Analytik-Skolenie/blob/main/streamlit.md#pie-chart-with-plotly
 -- pip install plotly
 
+https://github.com/janbodnar/Python-Datovy-Analytik-Skolenie/blob/main/streamlit.md#upload-a-file
+
+```python
+import streamlit as st
+import pandas as pd
+
+st.title('Upload CSV file')
+
+# File uploader
+uploaded_file = st.file_uploader('Choose a CSV file', type='csv')
+
+if uploaded_file is not None:
+    # Read the uploaded file
+    df = pd.read_csv(uploaded_file)
+    
+    # Display the DataFrame
+    st.write('Uploaded DataFrame:')
+    st.write(df)
+```
+
+
+-- natiahnut csv subora a potom zapisat do DB
+
+
+```python
+import streamlit as st
+import pandas as pd
+from sqlalchemy import create_engine
+
+st.title("CSV File Loader and Exporter to Local PostgreSQL")
+
+# Function to upload CSV file
+uploaded_file = st.file_uploader("Choose a CSV file", type=["csv"])
+
+if uploaded_file is not None:
+    # Read the CSV file
+    df = pd.read_csv(uploaded_file)
+
+    # Display the DataFrame
+    st.write("File uploaded successfully!")
+    st.write(df)
+
+    # Request database connection parameters
+    st.sidebar.subheader("Database Connection Parameters")
+    host = st.sidebar.text_input("Host", "localhost")
+    database = st.sidebar.text_input("Database", "testdb")
+    user = st.sidebar.text_input("User", "postgres")
+    password = st.sidebar.text_input("Password", type="password")
+    table_name = st.sidebar.text_input("Table Name", "Test")
+
+    # Function to export DataFrame to PostgreSQL
+    def export_to_postgresql(df, host, database, user, password, table_name):
+        # Create the connection string
+        engine = create_engine(f'postgresql://{user}:{password}@{host}/{database}')
+        # Export DataFrame to PostgreSQL
+        df.to_sql(table_name, engine, if_exists='replace', index=False)
+
+    # Export the DataFrame to PostgreSQL
+    if st.button("Export to PostgreSQL"):
+        export_to_postgresql(df, host, database, user, password, table_name)
+        st.write("Data exported to PostgreSQL successfully!")
+
+else:
+    st.write("No file uploaded.")
+```
+
+## Markdown
+
+-- https://github.com/janbodnar/Python-Datovy-Analytik-Skolenie/blob/main/streamlit.md#markdown
+
+```python
+import streamlit as st
+import pandas as pd
+
+# Title of the app
+st.title('Streamlit markdown')
+
+# Display a simple DataFrame
+df = pd.DataFrame({
+    'Name': ['Alice', 'Bob', 'Charlie'],
+    'Age': [25, 30, 35],
+    'Occupation': ['Engineer', 'Doctor', 'Artist']
+})
+
+st.write('Simple DataFrame:')
+st.write(df)
+
+# Display some markdown text
+st.markdown('This is **Streamlit**. You can write *markdown* too!')
+
+st.markdown('Python *source code*')
+
+st.markdown('''
+~~~python
+import streamlit as st
+import pandas as pd
+
+# Title of the app
+st.title('Streamlit markdown')
+
+# Display a simple DataFrame
+df = pd.DataFrame({
+    'Name': ['Alice', 'Bob', 'Charlie'],
+    'Age': [25, 30, 35],
+    'Occupation': ['Engineer', 'Doctor', 'Artist']
+})
+
+st.write('Here is a simple DataFrame:')
+st.write(df)
+
+# Display some markdown text
+st.markdown('This is **Streamlit**. You can write *markdown* too!')
+~~~ ''')
+```
