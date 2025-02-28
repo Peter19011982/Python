@@ -693,15 +693,24 @@ with psycopg.connect(cs) as con:
 
 
 ## AI
+-- vyborne na tvorbu dokumentacie
+
 
 -- https://openrouter.ai/
--- login google ucet
-
-
---OPENROUTER_API_KEY: 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
-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
 
 --https://github.com/janbodnar/Python-Datovy-Analytik-Skolenie/blob/main/ai.md#openrouter
+
+-- login google ucet
+
+--OPENROUTER_API_KEY: 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
+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
+
+
+--pridat do systemovych premennych:
+
+![image](https://github.com/user-attachments/assets/4ebc586e-81fe-4f20-9919-368a88ebc596)
+
+
 
 --- pip install openai
 --- time.sleep(3)
