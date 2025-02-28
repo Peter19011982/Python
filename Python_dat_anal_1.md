@@ -660,7 +660,9 @@ with psycopg.connect(cs) as con:
         cur.executemany(query, users)
 ```
 
--- oprava mock data
+-- oprava mock data:
+
+
 
 ```python
 import csv
@@ -701,8 +703,7 @@ cs = "dbname='testdb' user='postgres' password='postgres'"
 query = """
 CREATE TABLE users_mock(id SERIAL PRIMARY KEY, first_name VARCHAR(255),     
                         last_name VARCHAR(255), active VARCHAR(10), subcr INTEGER,
-                        entries INTEGER, DoB VARCHAR(10))
-"""
+                        entries INTEGER, DoB VARCHAR(10))```
 
 
 with psycopg.connect(cs) as con:
@@ -715,6 +716,10 @@ with psycopg.connect(cs) as con:
         query = "INSERT INTO users_mock (id, first_name, last_name, active, subcr, entries, dob) VALUES (%s, %s, %s, %s, %s, %s, %s)"
         cur.executemany(query, users)
 ```
+--vystup
+
+![image](https://github.com/user-attachments/assets/b9a84b60-5ecc-4646-a5b4-a7b0ea066666)
+
 
 
 # get username/password from env variables  
