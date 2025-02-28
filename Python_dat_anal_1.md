@@ -728,6 +728,39 @@ with psycopg.connect(cs) as con:
 ![image](https://github.com/user-attachments/assets/3d343e63-9d19-4a01-9f8e-210d88acaadd)
 
 
+-- riesenie mock_data s pandas
+
+-- pip instal pandas sqlalchemy psychopg2
+
+```python
+import pandas as pd
+from sqlalchemy import create_engine
+
+df = pd.read_csv('mock_data.csv')
+
+# Drop columns with all blank values
+df = df.drop(columns=['blank1', 'blank2'])
+
+# Replace None with 0 in 'subcr' and 'entries' columns
+df['subcr'] = df['subcr'].fillna(0)
+df['entries'] = df['entries'].fillna(0)
+
+# Parse 'DoB' column to ISO format
+df['DoB'] = pd.to_datetime(df['DoB'], format='%m/%d/%Y').dt.strftime('%Y-%m-%d')
+
+# Print the DataFrame to verify
+print(df)
+
+# Save to a new CSV file
+df.to_csv('mock_data2.csv', index=False)
+
+# Load the DataFrame to a PostgreSQL table
+engine = create_engine('postgresql://postgres:postgres@localhost:5432/testdb')
+df.to_sql('mock_data', engine, if_exists='replace')
+```
+
+
+
 # get username/password from env variables  
 
 --premenne prostredia DB credentions
