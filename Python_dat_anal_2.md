@@ -504,3 +504,32 @@ st.write(df)
 st.markdown('This is **Streamlit**. You can write *markdown* too!')
 ~~~ ''')
 ```
+
+![image](https://github.com/user-attachments/assets/e88b6364-e6e1-4042-88b2-17cccd610eec)
+
+
+
+## Database example
+
+
+-- https://github.com/janbodnar/Python-Datovy-Analytik-Skolenie/blob/main/streamlit.md#database-example
+
+- novy adresar test + otvorit folder vo vs code
+- do neho adresar .streamlit
+- do neho secrets.loml :
+```python
+  [connections.postgresql]
+type="sql"
+dialect = "postgresql"
+host = "localhost"
+port = "5432"
+database = "testdb"
+username = "postgres"
+password = "postgres"
+```
+- main.py do adresara test
+
+![image](https://github.com/user-attachments/assets/6b23e036-8847-4d8b-b89d-a64ee802e9b2)
+
+![image](https://github.com/user-attachments/assets/b7925f6d-8674-4cd3-b241-5c4da5922869)
+
