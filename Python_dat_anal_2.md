@@ -291,4 +291,62 @@ print(df.tail(30))
 ```
 
 
+## Streamlit
+-- treba si prebehnut, velmi zaujmave funkcie
 
+-- https://github.com/janbodnar/Python-Datovy-Analytik-Skolenie/blob/main/streamlit.md
+
+-- pip instal streamlit
+
+-- spustit: streamlit run streamlit_text.py
+
+```python
+import streamlit as st
+
+st.title('Text input')
+
+name = st.text_input('Enter your name:')
+
+if name:
+    st.write(f'Hello {name}!')
+```
+
+-- data table
+
+```python
+import streamlit as st
+import pandas as pd
+
+df = pd.read_csv('products.csv')
+
+# Display title and description
+st.title('Data Dashboard')
+st.write('This is a simple data dashboard using Streamlit.')
+
+# use table to display data
+st.table(df.head(15))
+```
+
+
+-- https://github.com/janbodnar/Python-Datovy-Analytik-Skolenie/blob/main/streamlit.md#text-input---slider
+
+
+-- https://github.com/janbodnar/Python-Datovy-Analytik-Skolenie/blob/main/streamlit.md#control-number-of-rows-with-slider
+
+```python
+import streamlit as st
+import pandas as pd
+
+df = pd.read_csv('products.csv')
+
+st.title('Data Dashboard')
+
+# Set the default number of rows to display
+default_rows = 10
+
+# Create a slider to control the number of rows
+n = st.slider("Number of rows to display", 3, len(df), value=default_rows)
+
+# Display the DataFrame with the selected number of rows
+st.table(df.head(n))
+```
