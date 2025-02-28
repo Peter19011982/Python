@@ -721,10 +721,11 @@ with psycopg.connect(cs) as con:
         query = "INSERT INTO mock_data (id, first_name, last_name, active, subcr, entries, dob) VALUES (%s, %s, %s, %s, %s, %s, %s)"
         cur.executemany(query, users)
 ```
---vystup
+--vystup aj v DB
 
 ![image](https://github.com/user-attachments/assets/b9a84b60-5ecc-4646-a5b4-a7b0ea066666)
 
+![image](https://github.com/user-attachments/assets/3d343e63-9d19-4a01-9f8e-210d88acaadd)
 
 
 # get username/password from env variables  
