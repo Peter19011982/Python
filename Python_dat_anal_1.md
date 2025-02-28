@@ -703,7 +703,6 @@ with psycopg.connect(cs) as con:
 -- login google ucet
 
 --OPENROUTER_API_KEY: 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
-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
 
 
 --pridat do systemovych premennych:
