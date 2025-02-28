@@ -202,6 +202,26 @@ df = df_list[0]
 print(df)
 ```
 
+--shmu udaje
+
+```python
+import pandas as pd
+
+# URL of the HTML page containing the table
+url = "https://www.shmu.sk/sk/?page=1&id=hydro_vod_all&station_id=5127"
+
+# Read the HTML table into a DataFrame
+df_list = pd.read_html(url)
+
+# The function returns a list of DataFrames, so we select the first one
+df = df_list[1]
+
+# Display the DataFrame
+print(df)
+```
+
+
+
 ## PANDAS vs POSTGRES
 
 -- https://github.com/janbodnar/Python-Datovy-Analytik-Skolenie/blob/main/pandas/import.md#postgresql-to-dataframe
@@ -219,5 +239,56 @@ df = pd.read_sql_query(query, cs)
 print(df)
 
 ```
+
+-- hesla uchovavat v .env suboroch
+
+DATABASE_URL=postgresql://postgres:s$cret@localhost/testdb
+
+-- pip install python-decouple
+
+```python
+import pandas as pd
+from decouple import config
+
+# pip install decouple
+
+# Load the connection string from the .env file
+cs = config('DATABASE_URL')
+
+# Execute a query to fetch data from the 'users' table
+query = "SELECT * FROM users"
+df = pd.read_sql_query(query, cs)
+
+# Display the first 15 rows of the DataFrame
+print(df.head(15).to_string(index=False))
+```
+
+
+## Stocks from Yahoo
+
+https://github.com/janbodnar/Python-Datovy-Analytik-Skolenie/blob/main/pandas/import.md#stocks-from-yahoo
+
+-- pip install yfinance
+
+```python
+import yfinance as yf
+import pandas as pd
+
+# Define the ticker symbol
+ticker_symbol = 'AAPL'
+
+# Get data on this ticker
+ticker_data = yf.Ticker(ticker_symbol)
+
+# Get the historical prices for this ticker
+df = ticker_data.history(period='1y')
+
+# Ensure the date contains only the date part
+df.index = df.index.date
+
+# Display the DataFrame
+print(df.tail(30))
+```
+
 
 
